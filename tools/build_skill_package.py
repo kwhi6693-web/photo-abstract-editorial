@@ -24,10 +24,19 @@ RUNTIME_FILES = (
     "scripts/compose_editorial.py",
     "scripts/validate_editorial.py",
 )
+TEXT_RUNTIME_SUFFIXES = {".json", ".md", ".py", ".yaml", ".yml"}
 
 
 def archive_name(relative_path: str) -> str:
     return str(PurePosixPath(PACKAGE_NAME) / PurePosixPath(relative_path))
+
+
+def runtime_bytes(relative_path: str) -> bytes:
+    source_path = REPO_ROOT / relative_path
+    data = source_path.read_bytes()
+    if source_path.suffix.lower() in TEXT_RUNTIME_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
 
 
 def verify_archive(archive_path: Path = ARCHIVE_PATH) -> list[str]:
@@ -55,7 +64,7 @@ def verify_archive(archive_path: Path = ARCHIVE_PATH) -> list[str]:
                 if not source_path.is_file():
                     errors.append(f"runtime source is missing: {source_path}")
                     continue
-                if name in actual_names and archive.read(name) != source_path.read_bytes():
+                if name in actual_names and archive.read(name) != runtime_bytes(relative_path):
                     errors.append(f"archive entry is stale: {name}")
     except (BadZipFile, OSError, ValueError) as error:
         errors.append(f"archive cannot be read: {type(error).__name__}: {error}")
@@ -94,7 +103,7 @@ def build_archive(archive_path: Path = ARCHIVE_PATH) -> None:
                 info.external_attr = (0o100644 & 0xFFFF) << 16
                 archive.writestr(
                     info,
-                    (REPO_ROOT / relative_path).read_bytes(),
+                    runtime_bytes(relative_path),
                     compress_type=ZIP_DEFLATED,
                     compresslevel=9,
                 )

@@ -39,6 +39,7 @@
 - 全部自动化测试通过。
 - 示例摄影区域逐像素一致。
 - 可重复构建的安装包只包含 9 个当前运行时文件，不包含测试和工作缓存。
+- 构建器会把包内文本统一为 LF 换行，使 Windows、macOS 和 Linux 生成的安装包保持逐字节稳定。
 
 ### 已验证示例
 
@@ -81,6 +82,7 @@ Requirements: Codex built-in `imagegen`, Python 3.10+, Pillow, and an available 
 - All automated tests pass.
 - The example photograph region is pixel-exact.
 - The reproducible downloadable package contains only the nine current runtime files, without tests or work caches.
+- The builder normalizes packaged text to LF so Windows, macOS, and Linux produce byte-stable archives.
 
 ### Validated example
 

@@ -12,6 +12,14 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+TEXT_RUNTIME_SUFFIXES = {".json", ".md", ".py", ".yaml", ".yml"}
+
+
+def canonical_runtime_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix.lower() in TEXT_RUNTIME_SUFFIXES:
+        return data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return data
 
 
 def load_package_builder():
@@ -58,7 +66,7 @@ class SkillPackageTests(unittest.TestCase):
                     relative_path = archive_name.removeprefix("photo-abstract-editorial/")
                     self.assertEqual(
                         handle.read(archive_name),
-                        (REPO_ROOT / relative_path).read_bytes(),
+                        canonical_runtime_bytes(REPO_ROOT / relative_path),
                     )
 
     def test_package_builder_verifies_current_archive(self) -> None:
