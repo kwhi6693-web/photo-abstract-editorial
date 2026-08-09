@@ -1,35 +1,46 @@
 ---
 name: photo-abstract-editorial
-description: Create a clean, vertical editorial artwork that preserves an uploaded photograph as the original image and pairs it with a restrained, photo-derived abstract memory panel and poetic English title. Use when asked to transform a photo into an abstract editorial diptych, photo-plus-abstraction composition, visual memory panel, or minimalist archival poster without redrawing or stylizing the source photo.
+description: Use when one photograph must become a vertical photo-plus-abstraction editorial, visual memory panel, archival poster, or abstract diptych while the photographic region remains verifiably unchanged.
 ---
 
 # Photo Abstract Editorial
 
-Create one finished image from one uploaded photograph. Keep the photograph faithful; derive the lower abstract panel only from the photograph's observed spatial, tonal, and color relationships.
+Create one verified composition from one photograph. Generate only the motif; assemble photo, panel, and typography deterministically.
+
+**REQUIRED SUB-SKILL:** Use imagegen for motif generation. Never ask imagegen to generate the finished composite or its typography.
+
+## Contract
+
+- **Invariants:** one readable photo; full source retained by default; no unrelated content or generated text; machine and visual validation required.
+- **Defaults:** shortened warm-ivory panel, lower-left optical grid, muted ink palette, one English title, no subtitle, high-contrast serif with native whole-run kerning.
+- **Overrides:** accept panel, motif, text, alignment, and font choices. Reject source redrawing or invented content.
 
 ## Workflow
 
-1. Inspect the photograph internally. Identify three to six decisive spatial facts: subject relationships, scale, axes, direction, intervals, overlap, depth, rhythm, light, color roles, and negative space.
-2. Keep the photo as the upper or principal section. Permit only proportional scaling or a slight crop needed for the composition. Never redraw, extend, replace, retouch, apply a filter to, or otherwise alter its content.
-3. Reconstruct the retained relationships below as a sparse abstract motif—not a thumbnail, trace, illustration, vector icon, or style transfer. Prefer relationships over silhouettes and preserve only the minimum recognition cues needed for distinctive subjects.
-4. Compose a vertical work with an untextured, uniform ivory lower panel. Adapt the photo/panel proportions to the photograph rather than splitting the image mechanically in half. Join both sections directly with no frame, shadow, collage, tape, or mockup effect.
-5. Use one primary mark family and no more than two supporting families. Extract a muted palette solely from the photo; use generous whitespace and avoid invented decorative elements, colors, symbols, and symmetry.
-6. Create one original English title of two to five words, grounded in visible facts. Place it only on the abstract panel in a restrained editorial serif face. Add a short subtitle only when it adds meaning.
-7. Return only the completed composition. Do not add commentary, analysis, title options, labels, dates, logos, or watermarks.
+1. Require one photograph; ask if missing. Inspect local input with `view_image`.
+2. Read [references/art-direction.md](references/art-direction.md). Identify three to six source facts; choose panel ratio, mark family, muted palette, and exact title.
+3. Label the source **reference image**, not edit target. Generate only a sparse motif on flat chroma key: two to four bands and one dark structure. When the source has a decisive vertical structure, add one primary and one subordinate irregular vertical stroke of unequal height and width; otherwise use one or two negative gaps or band offsets. Require muted source colors; forbid literal infrastructure, recognizable tracing, isolated dots, photo, text, swatch, logo, frame, shadow, and texture.
+4. Save the motif source. Use imagegen's installed `remove_chroma_key.py`; validate alpha, corners, palette, edges, and no chroma specks. CLI/model fallback requires user approval.
+5. Resolve an absolute Python executable; in Codex use `codex_app__load_workspace_dependencies`. Run compositor `--help`, then pass source, transparent motif, PNG output, and exact title. Optionally pass `--title-accent` for one short connector such as `at`; the compositor renders it smaller and italic while keeping the remaining title in optically placed whole-word runs. Never overwrite without permission.
+6. Run `scripts/validate_editorial.py` against the source, output, and generated `.manifest.json`. Continue only when its JSON reports `"ok": true` and the process exits zero.
+7. Inspect with `view_image`: intact photo; abstraction before recollection; horizontal motif remains dominant; any vertical anchors are source-derived, unequal, and subordinate; connected but non-equal optical margins; natural kerning and clear title hierarchy; flat panel; exact title; no extra text, watermark, fringe, speck, or invention.
+8. On failure, make one targeted motif correction and repeat. Stop after two motif attempts.
+9. Return only the completed image and saved path.
 
-## Guardrails
+## Quick reference
 
-- Treat the uploaded photo as the sole content source.
-- Keep the panel background flat, continuous, and neutral ivory; exclude gradients, paper texture, grain, glow, shadows, vignettes, stains, collage artifacts, and scan effects.
-- Make every abstract mark traceable to a visual fact in the source photo.
-- Preserve people as irregular continuous short vertical marks or gently tapered blocks, never illustrated heads, limbs, faces, or clothing.
-- Preserve landmark architecture with at most one to three identity cues; omit architectural surface detail.
+| Need | Use |
+|---|---|
+| Visual rules | `references/art-direction.md` |
+| Deterministic assembly | `scripts/compose_editorial.py --help` |
+| Delivery gate | `scripts/validate_editorial.py --help` |
+| Validated example | [references/example-pair.md](references/example-pair.md) |
 
-## Reference Prompt
+## Common mistakes
 
-Read the appropriate full prompt before producing the image:
-
-- Chinese: [references/photo-abstract-editorial-prompt.zh-CN.md](references/photo-abstract-editorial-prompt.zh-CN.md)
-- English: [references/photo-abstract-editorial-prompt.en.md](references/photo-abstract-editorial-prompt.en.md)
-
-Use [assets/examples](assets/examples) as visual input examples only. Do not reuse their subject matter, colors, or composition unless the user supplies that exact image.
+- One-shot generation cannot prove photo preservation or exact typography.
+- A miniature trace is not abstraction; unrelated anchors are not a grid.
+- Equal-height vertical marks look diagrammatic; use one primary and one subordinate anchor only when the source supports them.
+- Uniform per-character tracking and mathematically equal margins often look rigid; use native word shaping and optical offsets.
+- Script success alone is insufficient: validator and visual QA must pass.
+- Examples prove structure, not a reusable palette or template.

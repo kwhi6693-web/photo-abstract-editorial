@@ -1,73 +1,112 @@
 # Photo Abstract Editorial
 
-将一张照片转化为“原始摄影区域 + 抽象记忆面板 + 诗意英文标题”的竖向编辑作品的 Codex Skill。它保留照片的真实内容，并仅从照片本身提炼空间关系、构图节奏和色彩关系；它不是滤镜、照片重画或风格迁移。
+[中文](#中文) | [English](#english)
 
-The skill includes the complete prompt in both Chinese and English.
+公开仓库 / Public repository: [ZzzLc0405/photo-abstract-editorial](https://github.com/ZzzLc0405/photo-abstract-editorial)
 
-## 示例图片（原图均为本人拍摄）
+最新版安装包 / Latest package: [`dist/photo-abstract-editorial-skill.zip`](dist/photo-abstract-editorial-skill.zip)
 
-<!-- <table>
-  <tr>
-    <td><img src="./assets/examples/case-3.jpg" width="100%"></td>
-    <td><img src="./assets/examples/case-1.jpg" width="100%"></td>
-    <td><img src="./assets/examples/case-7.jpg" width="100%"></td>
-  </tr>
-  <tr>
-    <td><img src="./assets/examples/case-2.jpg" width="100%"></td>
-    <td><img src="./assets/examples/case-6.jpg" width="100%"></td>
-    <td><img src="./assets/examples/case-8.jpg" width="100%"></td>
-   
-  </tr>
-</table> -->
-<p align="center">
-  <img src="./assets/examples/case-3.jpg" width="32%">
-  <img src="./assets/examples/case-1.jpg" width="32%">
-  <img src="./assets/examples/case-7.jpg" width="32%">
-  <br>
-  <img src="./assets/examples/case-6.jpg" width="32%">
-  <img src="./assets/examples/case-2.jpg" width="32%">
-  <img src="./assets/examples/case-8.jpg" width="32%">
-</p>
-## 使用方法
+## 中文
 
-1. 将整个 `photo-abstract-editorial` 文件夹复制到你的 Codex skills 目录，例如 `~/.codex/skills/`。
-2. 开启新的 Codex 对话，上传一张希望处理的照片。
-3. 直接提出需求，例如：
+把一张照片制作成“完整原片区域 + 照片关系派生的抽象面板 + 精确英文标题”的竖向编辑作品。图像生成只负责无文字抽象母题；照片、均匀面板和标题由本地脚本确定性合成，并在交付前逐像素验证摄影区域。
 
-   > 使用 `photo-abstract-editorial` 将这张照片制作成摄影与抽象面板组合的编辑作品。
+### 主要改进
 
-4. Skill 会将原图保留在成品的上方或主要区域，并在下方创建由原图关系推导出的极简抽象面板。成品中只保留一个原创英文标题（可选副标题）。
+- 默认保留完整照片，不让图像模型重绘最终摄影区域。
+- 标题使用本地高对比衬线字体与自然整词字距；可将一个连接词缩小并改为斜体。
+- 使用光学边距组织图形与标题，不强求所有元素机械对齐。
+- 当原图有决定性的竖向主体时，使用一主一辅、不同高度和粗细的短竖线；其余关系仍以负形断口与横向错层表达。
+- 自动生成 JSON 清单，逐像素验证摄影区域，并清除孤立色键噪点。
+- 禁止色卡、logo、地点标签、水印、额外文字和无来源装饰。
+- 只有机器验证和视觉检查同时通过才交付。
 
-也可以直接打开下列文件，并将其作为图像生成提示词使用：
+### 安装与使用
 
-- 中文版：[references/photo-abstract-editorial-prompt.zh-CN.md](references/photo-abstract-editorial-prompt.zh-CN.md)
-- English version: [references/photo-abstract-editorial-prompt.en.md](references/photo-abstract-editorial-prompt.en.md)
+推荐直接告诉 Codex：
 
-## 可自由调整的部分
+> 使用 `$skill-installer` 从 `https://github.com/ZzzLc0405/photo-abstract-editorial` 安装根目录的 `photo-abstract-editorial` Skill。
 
-这套提示词应当被视为高质量起点，而不是不可变的版式规范。请按自己的审美和项目需求修改以下参数：
+也可以下载 [`dist/photo-abstract-editorial-skill.zip`](dist/photo-abstract-editorial-skill.zip)，解压后把 `photo-abstract-editorial` 文件夹复制到 `~/.codex/skills/`。安装后开启新任务并上传一张照片：
 
-- **照片与面板的比例**：可调整摄影区域和抽象面板的高度占比、画布比例，以及抽象母题的大小与留白。
-- **颜色**：可修改象牙色面板背景、照片提取色的饱和度、主色与强调色的数量和倾向。
-- **抽象形式**：可选择或混合色块、柔和有机质量、弧形笔触、短条、层叠色带、简化建筑质量、细线、点状标记等形式。
-- **版式与文字**：可调整母题位置、标题位置、字体气质、标题长度和是否使用副标题。
-- **抽象程度**：可根据题材在“关系优先”和“保留少量身份特征”之间调整，例如让地标建筑或小型物件保留更多辨识线索。
+> 使用 `$photo-abstract-editorial` 把这张照片制作成严格保真的摄影抽象编辑作品。
 
-调整时建议保留两条核心原则：
+依赖：Codex 内置 `imagegen`、Python 3.10+、Pillow，以及可用的衬线字体。Skill 会优先使用 Codex 工作区提供的绝对 Python 路径，并使用 imagegen 的色键移除辅助脚本。
 
-1. 上传照片始终是唯一内容来源，照片区域不应被重画、扩展或改写。
-2. 抽象面板中的每个重要元素都应能追溯到原照片中真实存在的空间、色彩或结构事实。
+### 验证状态
 
-## 内容结构
+- 官方 Skill 结构校验通过。
+- 24 项自动化测试通过。
+- 示例摄影区域逐像素一致。
+- 安装包只包含 9 个运行时文件，不包含测试和工作缓存。
+
+### 已验证示例
+
+| 输入 | 输出 |
+|---|---|
+| ![输入照片](assets/examples/source-horizon.png) | ![完成作品](assets/examples/result-horizon.png) |
+
+示例仅用于说明流程，不应复用其题材、标题、色彩或版式。
+
+## English
+
+Turn one photograph into a vertical editorial composition containing the complete source photo, a photo-derived abstract panel, and exact English typography. Image generation creates only a text-free motif; local scripts assemble and validate the photograph, uniform panel, and title.
+
+### Key improvements
+
+- Preserve the complete photograph instead of asking a model to redraw the final photo region.
+- Typeset exact titles locally with a high-contrast serif and native whole-run kerning; optionally style one connector in a smaller matching italic.
+- Use optical spacing between the motif and title rather than mechanically equal margins.
+- When the source has decisive vertical structures, translate them into one primary and one subordinate unequal anchor; keep negative gaps and horizontal offsets dominant elsewhere.
+- Write a JSON manifest, compare every decoded photograph-region pixel, and remove isolated chroma-key components.
+- Reject swatches, logos, place labels, watermarks, extra text, and unsupported decoration.
+- Deliver only after deterministic validation and visual QA both pass.
+
+### Install and use
+
+Recommended: ask Codex directly:
+
+> Use `$skill-installer` to install the root `photo-abstract-editorial` Skill from `https://github.com/ZzzLc0405/photo-abstract-editorial`.
+
+Alternatively, download [`dist/photo-abstract-editorial-skill.zip`](dist/photo-abstract-editorial-skill.zip), extract it, and copy the `photo-abstract-editorial` folder into `~/.codex/skills/`. Start a new task and attach one photograph:
+
+> Use `$photo-abstract-editorial` to create a strict-fidelity photo-and-abstract editorial from this image.
+
+Requirements: Codex built-in `imagegen`, Python 3.10+, Pillow, and an available serif font. The Skill prefers Codex's absolute workspace Python path and the imagegen chroma-key removal helper.
+
+### Validation status
+
+- Official Skill structure validation passes.
+- All 24 automated tests pass.
+- The example photograph region is pixel-exact.
+- The downloadable package contains only the nine runtime files, without tests or work caches.
+
+### Validated example
+
+| Source | Result |
+|---|---|
+| ![Source photograph](assets/examples/source-horizon.png) | ![Completed composition](assets/examples/result-horizon.png) |
+
+The example demonstrates the workflow only. Do not reuse its subject, title, palette, or composition.
+
+## Repository structure
 
 ```text
 photo-abstract-editorial/
-├── SKILL.md                         # Skill 工作流程与约束
-├── agents/openai.yaml               # Codex 界面元数据
-├── references/
-│   ├── photo-abstract-editorial-prompt.zh-CN.md
-│   └── photo-abstract-editorial-prompt.en.md
-└── assets/examples/                 # 5 张示例图片
+|- SKILL.md
+|- agents/openai.yaml
+|- scripts/
+|  |- compose_editorial.py
+|  `- validate_editorial.py
+|- references/
+|  |- art-direction.md
+|  `- example-pair.md
+|- assets/examples/
+|  |- source-horizon.png
+|  |- result-horizon.png
+|  `- result-horizon.png.manifest.json
+|- docs/evals/legacy-baseline.md
+|- dist/photo-abstract-editorial-skill.zip
+`- tests/
 ```
 
-`assets/examples` 中的图片仅用于理解预期输入类型；除非用户上传该图片本身，否则不要将其中的主题、色彩或构图复用于新的作品。
+The public repository README and development tests are intentionally excluded from the clean installable package. No license is asserted because the repository does not currently contain a LICENSE file.

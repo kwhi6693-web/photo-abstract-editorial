@@ -1,4 +1,4 @@
 interface:
   display_name: "Photo Abstract Editorial"
-  short_description: "Create photo-derived editorial abstractions."
-  default_prompt: "Create a clean photo-and-abstract editorial artwork from this image."
+  short_description: "Create verified photo-and-abstract editorials."
+  default_prompt: "Use $photo-abstract-editorial to turn this photograph into a verified photo-and-abstract editorial composition."

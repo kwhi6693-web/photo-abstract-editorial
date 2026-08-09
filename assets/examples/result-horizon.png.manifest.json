@@ -1,0 +1,119 @@
+{
+  "layout_grid": {
+    "inset": 72,
+    "inset_ratio": 0.07
+  },
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 0,
+      "removed_pixels": 5356,
+      "resized_min_component_area": 138
+    },
+    "file_name": "motif-horizon-v4.png",
+    "sha256": "6278db77d2db6800aac7aac61bcfb93f33f1ae6affa80917bcbec945d3a5d40e"
+  },
+  "motif_region": {
+    "height": 100,
+    "width": 552,
+    "x": 72,
+    "y": 812
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "font_path": null,
+    "layout": "lower-left",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "Emberline at Dusk",
+    "title_accent": "at",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#4B3738",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result-horizon.png",
+    "sha256": "d4d7cd0d765c618bcac854768d566a7fa1780f3bcaa698c5f58366c6665a3e98",
+    "size": [
+      1023,
+      1296
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 576,
+    "y": 720
+  },
+  "photo_region": {
+    "height": 720,
+    "pixel_exact": true,
+    "pixel_sha256": "69242c2e79928565d4da512222ee0f3da5f15b5242050151abb4be570f533856",
+    "width": 1023,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source-horizon.png",
+    "rendered_pixel_sha256": "69242c2e79928565d4da512222ee0f3da5f15b5242050151abb4be570f533856",
+    "sha256": "aea04d5b443a2c03de5e7842354ba76333c6ff94ec77421210ba93dee8d04a5e",
+    "visual_size": [
+      1023,
+      720
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 118,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "lower-left",
+    "subtitle": null,
+    "subtitle_color": "#4B3738",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "Emberline at Dusk",
+    "title_accent": "at",
+    "title_anchor_x": 84,
+    "title_color": "#4B3738",
+    "title_font_size": 42,
+    "title_optical_offset": 12,
+    "title_region": {
+      "height": 29,
+      "width": 318,
+      "x": 84,
+      "y": 1149
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 42,
+        "style": "primary",
+        "text": "Emberline "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 29,
+        "style": "accent",
+        "text": "at"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 42,
+        "style": "primary",
+        "text": " Dusk"
+      }
+    ]
+  }
+}
