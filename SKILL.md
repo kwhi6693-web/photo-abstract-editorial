@@ -19,13 +19,13 @@ Create one verified composition from one photograph. Generate only the motif; as
 
 1. Require one photograph; ask if missing. Inspect local input with `view_image`.
 2. Read [references/art-direction.md](references/art-direction.md). Identify three to six source facts; choose panel ratio, mark family, muted palette, and exact title.
-3. Label the source **reference image**, not edit target. Generate only a sparse motif on flat chroma key: two to four bands and one dark structure. When the source has a decisive vertical structure, add one primary and one subordinate irregular vertical stroke of unequal height and width; otherwise use one or two negative gaps or band offsets. Require muted source colors; forbid literal infrastructure, recognizable tracing, isolated dots, photo, text, swatch, logo, frame, shadow, and texture.
+3. Label the source **reference image**, not edit target. Generate a sparse motif on flat chroma key: two to four bands and one dark structure. If decisive vertical structure appears, add one primary and one subordinate irregular vertical stroke, unequal in height and width; otherwise use negative gaps or band offsets. Use muted source colors. Forbid literal infrastructure, recognizable tracing, dots, photo, text, swatch, logo, frame, shadow, and texture.
 4. Save the motif source. Use imagegen's installed `remove_chroma_key.py`; validate alpha, corners, palette, edges, and no chroma specks. CLI/model fallback requires user approval.
-5. Resolve an absolute Python executable; in Codex use `codex_app__load_workspace_dependencies`. Run compositor `--help`, then pass source, transparent motif, PNG output, and exact title. Optionally pass `--title-accent` for one short connector such as `at`; the compositor renders it smaller and italic while keeping the remaining title in optically placed whole-word runs. Never overwrite without permission.
+5. Resolve absolute Python via `codex_app__load_workspace_dependencies`. Run compositor `--help`, then pass source, transparent motif, a new PNG output path, and exact title. Optionally pass `--title-accent` for one short connector (`at`); the compositor renders it smaller and italic while keeping the remaining title in optically placed whole-word runs. The compositor rejects input-path collisions and existing output or manifest files; choose another path instead of overwriting.
 6. Run `scripts/validate_editorial.py` against the source, output, and generated `.manifest.json`. Continue only when its JSON reports `"ok": true` and the process exits zero.
 7. Inspect with `view_image`: intact photo; abstraction before recollection; horizontal motif remains dominant; any vertical anchors are source-derived, unequal, and subordinate; connected but non-equal optical margins; natural kerning and clear title hierarchy; flat panel; exact title; no extra text, watermark, fringe, speck, or invention.
 8. On failure, make one targeted motif correction and repeat. Stop after two motif attempts.
-9. Return only the completed image and saved path.
+9. Return only the image and saved path.
 
 ## Quick reference
 

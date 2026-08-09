@@ -259,6 +259,29 @@ class ComposeEditorialTests(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             module.compose(self.source, self.root / "missing-motif.png", self.output, options)
 
+    def test_output_cannot_replace_an_input_image(self) -> None:
+        """Catch an output collision destroying the source photograph or motif."""
+        module = load_composer()
+        options = module.CompositionOptions(title="Measured Horizon")
+        for input_path in (self.source, self.motif):
+            with self.subTest(input_path=input_path.name):
+                original_bytes = input_path.read_bytes()
+                with self.assertRaisesRegex(ValueError, "input image"):
+                    module.compose(self.source, self.motif, input_path, options)
+                self.assertEqual(input_path.read_bytes(), original_bytes)
+
+    def test_existing_output_is_not_overwritten(self) -> None:
+        """Catch reruns silently replacing an existing user-visible result."""
+        module = load_composer()
+        options = module.CompositionOptions(title="Measured Horizon")
+        original_bytes = b"existing-result"
+        self.output.write_bytes(original_bytes)
+
+        with self.assertRaises(FileExistsError):
+            module.compose(self.source, self.motif, self.output, options)
+
+        self.assertEqual(self.output.read_bytes(), original_bytes)
+
 
 if __name__ == "__main__":
     unittest.main()

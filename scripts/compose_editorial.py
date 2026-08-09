@@ -314,6 +314,34 @@ def atomic_write_json(payload: dict[str, Any], destination: Path) -> None:
             temp_path.unlink()
 
 
+def paths_refer_to_same_file(left: Path, right: Path) -> bool:
+    left_resolved = left.resolve()
+    right_resolved = right.resolve()
+    if left_resolved == right_resolved:
+        return True
+    try:
+        return left.exists() and right.exists() and left.samefile(right)
+    except OSError as error:
+        raise ValueError(f"cannot compare file identity: {left} and {right}: {error}") from error
+
+
+def validate_destination_paths(
+    source_path: Path,
+    motif_path: Path,
+    output_path: Path,
+    manifest_path: Path,
+) -> None:
+    for destination, label in (
+        (output_path, "output"),
+        (manifest_path, "manifest"),
+    ):
+        for input_path in (source_path, motif_path):
+            if paths_refer_to_same_file(destination, input_path):
+                raise ValueError(f"{label} path must not replace an input image: {input_path}")
+        if destination.exists():
+            raise FileExistsError(f"refusing to overwrite existing {label}: {destination}")
+
+
 def compose(
     source_path: str | Path,
     motif_path: str | Path,
@@ -329,6 +357,8 @@ def compose(
         raise FileNotFoundError(f"motif image not found: {motif_path}")
     if output_path.suffix.lower() != ".png":
         raise ValueError("output must use the .png extension")
+    manifest_path = output_path.with_suffix(output_path.suffix + ".manifest.json")
+    validate_destination_paths(source_path, motif_path, output_path, manifest_path)
 
     title = validate_single_line(options.title, "title", required=True)
     title_accent = validate_single_line(options.title_accent, "title_accent", required=False)
@@ -464,7 +494,6 @@ def compose(
         draw.text((subtitle_x, subtitle_y - subtitle_box[1]), subtitle, font=subtitle_font, fill=subtitle_rgb)
 
     atomic_save_image(canvas, output_path)
-    manifest_path = output_path.with_suffix(output_path.suffix + ".manifest.json")
     manifest: dict[str, Any] = {
         "manifest_version": MANIFEST_VERSION,
         "source": {

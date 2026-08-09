@@ -153,7 +153,18 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> int:
     args = build_parser().parse_args()
-    verdict = validate(args.source, args.output, args.manifest)
+    try:
+        verdict = validate(args.source, args.output, args.manifest)
+    except Exception as error:
+        verdict = {
+            "ok": False,
+            "checks": {},
+            "errors": ["validation_exception"],
+            "detail": f"{type(error).__name__}: {error}",
+            "source_file": args.source.name,
+            "output_file": args.output.name,
+            "manifest_file": args.manifest.name,
+        }
     print(json.dumps(verdict, ensure_ascii=False, sort_keys=True))
     return 0 if verdict["ok"] else 1
 

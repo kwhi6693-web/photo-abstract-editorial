@@ -1,15 +1,27 @@
 from __future__ import annotations
 
+import importlib.util
 import json
 import re
 import subprocess
 import sys
+import tempfile
 import unittest
 from zipfile import ZipFile
 from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_package_builder():
+    builder_path = REPO_ROOT / "tools" / "build_skill_package.py"
+    spec = importlib.util.spec_from_file_location("build_skill_package", builder_path)
+    if spec is None or spec.loader is None:
+        raise AssertionError("could not load build_skill_package")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 class SkillPackageTests(unittest.TestCase):
@@ -23,8 +35,8 @@ class SkillPackageTests(unittest.TestCase):
         self.assertIn("公开仓库", readme)
         self.assertIn("Public repository", readme)
 
-    def test_release_archive_contains_only_the_nine_runtime_files(self) -> None:
-        """Catch a public download that contains tests, work files, or misses runtime assets."""
+    def test_release_archive_contains_current_nine_runtime_files(self) -> None:
+        """Catch a public download that is stale, incomplete, or contains development files."""
         archive = REPO_ROOT / "dist" / "photo-abstract-editorial-skill.zip"
         self.assertTrue(archive.is_file())
         expected = {
@@ -40,7 +52,36 @@ class SkillPackageTests(unittest.TestCase):
         }
         with ZipFile(archive) as handle:
             actual = {name for name in handle.namelist() if not name.endswith("/")}
-        self.assertEqual(actual, expected)
+            self.assertEqual(actual, expected)
+            for archive_name in sorted(expected):
+                with self.subTest(archive_name=archive_name):
+                    relative_path = archive_name.removeprefix("photo-abstract-editorial/")
+                    self.assertEqual(
+                        handle.read(archive_name),
+                        (REPO_ROOT / relative_path).read_bytes(),
+                    )
+
+    def test_package_builder_verifies_current_archive(self) -> None:
+        """Catch release packaging that cannot be reproduced and checked deterministically."""
+        builder = REPO_ROOT / "tools" / "build_skill_package.py"
+        self.assertTrue(builder.is_file())
+        completed = subprocess.run(
+            [sys.executable, str(builder), "--check"],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr or completed.stdout)
+
+    def test_package_verifier_reports_a_corrupt_archive(self) -> None:
+        """Catch a damaged public download escaping as an unhandled traceback."""
+        builder = load_package_builder()
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            archive = Path(temporary_directory) / "corrupt.zip"
+            archive.write_bytes(b"not-a-zip")
+            errors = builder.verify_archive(archive)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("archive cannot be read", errors[0])
 
     def test_public_repo_ignores_local_build_workspace(self) -> None:
         """Catch generated evaluation files being accidentally published with the skill."""

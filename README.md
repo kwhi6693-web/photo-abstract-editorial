@@ -17,6 +17,7 @@
 - 使用光学边距组织图形与标题，不强求所有元素机械对齐。
 - 当原图有决定性的竖向主体时，使用一主一辅、不同高度和粗细的短竖线；其余关系仍以负形断口与横向错层表达。
 - 自动生成 JSON 清单，逐像素验证摄影区域，并清除孤立色键噪点。
+- 合成器拒绝让输出覆盖原图、抽象 motif、已有结果或已有 manifest。
 - 禁止色卡、logo、地点标签、水印、额外文字和无来源装饰。
 - 只有机器验证和视觉检查同时通过才交付。
 
@@ -35,9 +36,9 @@
 ### 验证状态
 
 - 官方 Skill 结构校验通过。
-- 24 项自动化测试通过。
+- 全部自动化测试通过。
 - 示例摄影区域逐像素一致。
-- 安装包只包含 9 个运行时文件，不包含测试和工作缓存。
+- 可重复构建的安装包只包含 9 个当前运行时文件，不包含测试和工作缓存。
 
 ### 已验证示例
 
@@ -58,6 +59,7 @@ Turn one photograph into a vertical editorial composition containing the complet
 - Use optical spacing between the motif and title rather than mechanically equal margins.
 - When the source has decisive vertical structures, translate them into one primary and one subordinate unequal anchor; keep negative gaps and horizontal offsets dominant elsewhere.
 - Write a JSON manifest, compare every decoded photograph-region pixel, and remove isolated chroma-key components.
+- Reject output paths that would overwrite the source, motif, an existing result, or an existing manifest.
 - Reject swatches, logos, place labels, watermarks, extra text, and unsupported decoration.
 - Deliver only after deterministic validation and visual QA both pass.
 
@@ -76,9 +78,9 @@ Requirements: Codex built-in `imagegen`, Python 3.10+, Pillow, and an available 
 ### Validation status
 
 - Official Skill structure validation passes.
-- All 24 automated tests pass.
+- All automated tests pass.
 - The example photograph region is pixel-exact.
-- The downloadable package contains only the nine runtime files, without tests or work caches.
+- The reproducible downloadable package contains only the nine current runtime files, without tests or work caches.
 
 ### Validated example
 
@@ -106,7 +108,8 @@ photo-abstract-editorial/
 |  `- result-horizon.png.manifest.json
 |- docs/evals/legacy-baseline.md
 |- dist/photo-abstract-editorial-skill.zip
-`- tests/
+|- tests/
+`- tools/build_skill_package.py
 ```
 
-The public repository README and development tests are intentionally excluded from the clean installable package. No license is asserted because the repository does not currently contain a LICENSE file.
+Run `python tools/build_skill_package.py --check` to verify that every archived runtime file exactly matches the repository; run it without `--check` to rebuild the archive deterministically. The public README, packaging tool, evaluation notes, and development tests are intentionally excluded from the clean installable package. No license is asserted because the repository does not currently contain a LICENSE file.

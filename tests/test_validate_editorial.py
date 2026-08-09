@@ -132,6 +132,33 @@ class ValidateEditorialTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertTrue(json.loads(completed.stdout)["ok"])
 
+    def test_cli_reports_machine_readable_failure_for_malformed_manifest(self) -> None:
+        """Catch invalid delivery metadata escaping as a traceback instead of JSON."""
+        self.manifest_path.write_text('{"source": []}', encoding="utf-8")
+
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(VALIDATOR_PATH),
+                "--source",
+                str(self.source),
+                "--output",
+                str(self.output),
+                "--manifest",
+                str(self.manifest_path),
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+
+        self.assertEqual(completed.returncode, 1)
+        verdict = json.loads(completed.stdout)
+        self.assertFalse(verdict["ok"])
+        self.assertEqual(verdict["errors"], ["validation_exception"])
+        self.assertIn("AttributeError", verdict["detail"])
+        self.assertEqual(completed.stderr, "")
+
 
 if __name__ == "__main__":
     unittest.main()
