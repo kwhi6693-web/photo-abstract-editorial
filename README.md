@@ -2,7 +2,7 @@
 
 [中文](#中文) | [English](#english)
 
-公开仓库 / Public repository: [ZzzLc0405/photo-abstract-editorial](https://github.com/ZzzLc0405/photo-abstract-editorial)
+公开仓库 / Public repository: [kwhi6693-web/photo-abstract-editorial](https://github.com/kwhi6693-web/photo-abstract-editorial)
 
 最新版安装包 / Latest package: [`dist/photo-abstract-editorial-skill.zip`](dist/photo-abstract-editorial-skill.zip)
 
@@ -24,7 +24,7 @@
 
 推荐直接告诉 Codex：
 
-> 使用 `$skill-installer` 从 `https://github.com/ZzzLc0405/photo-abstract-editorial` 安装根目录的 `photo-abstract-editorial` Skill。
+> 使用 `$skill-installer` 从 `https://github.com/kwhi6693-web/photo-abstract-editorial` 安装根目录的 `photo-abstract-editorial` Skill。
 
 也可以下载 [`dist/photo-abstract-editorial-skill.zip`](dist/photo-abstract-editorial-skill.zip)，解压后把 `photo-abstract-editorial` 文件夹复制到 `~/.codex/skills/`。安装后开启新任务并上传一张照片：
 
@@ -65,7 +65,7 @@ Turn one photograph into a vertical editorial composition containing the complet
 
 Recommended: ask Codex directly:
 
-> Use `$skill-installer` to install the root `photo-abstract-editorial` Skill from `https://github.com/ZzzLc0405/photo-abstract-editorial`.
+> Use `$skill-installer` to install the root `photo-abstract-editorial` Skill from `https://github.com/kwhi6693-web/photo-abstract-editorial`.
 
 Alternatively, download [`dist/photo-abstract-editorial-skill.zip`](dist/photo-abstract-editorial-skill.zip), extract it, and copy the `photo-abstract-editorial` folder into `~/.codex/skills/`. Start a new task and attach one photograph:
 

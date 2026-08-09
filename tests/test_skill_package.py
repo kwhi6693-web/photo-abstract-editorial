@@ -18,7 +18,7 @@ class SkillPackageTests(unittest.TestCase):
         readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("[中文](#中文)", readme)
         self.assertIn("[English](#english)", readme)
-        self.assertIn("ZzzLc0405/photo-abstract-editorial", readme)
+        self.assertIn("kwhi6693-web/photo-abstract-editorial", readme)
         self.assertIn("dist/photo-abstract-editorial-skill.zip", readme)
         self.assertIn("公开仓库", readme)
         self.assertIn("Public repository", readme)
