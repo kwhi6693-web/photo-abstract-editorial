@@ -114,4 +114,4 @@ photo-abstract-editorial/
 `- tools/build_skill_package.py
 ```
 
-Run `python tools/build_skill_package.py --check` to verify that every archived runtime file exactly matches the repository; run it without `--check` to rebuild the archive deterministically. The public README, packaging tool, evaluation notes, and development tests are intentionally excluded from the clean installable package. No license is asserted because the repository does not currently contain a LICENSE file.
+Run `python tools/build_skill_package.py --check` to verify that every archived runtime file exactly matches the repository; run it without `--check` to rebuild the archive deterministically. The public README, packaging tool, evaluation notes, and development tests are intentionally excluded from the clean installable package. The repository and its downloadable release are licensed under AGPL-3.0; the clean installable package contains only the runtime files listed above.
