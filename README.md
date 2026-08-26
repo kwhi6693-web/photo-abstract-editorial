@@ -4,8 +4,6 @@ Turn one photograph into an editorial composition built from the original photo,
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-<img src="assets/readme/banner.png" alt="Photo Abstract Editorial banner showing the real source, Original result, and V3 result" width="100%">
-
 [![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0--rc2-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
 
 This project keeps the source photograph factual, uses a restrained abstraction panel to carry visual memory, and renders the editorial title locally when Strict Fidelity is available.
@@ -17,7 +15,7 @@ This project keeps the source photograph factual, uses a restrained abstraction 
 | | Original Edition | V3 Adaptive Edition |
 |---|---|---|
 | Positioning | The preserved original Codex workflow | The adaptive, capability-based V3 workflow |
-| Runtime | CODEX ONLY | Codex validated; designed for suitable image-capable Agents/Harnesses |
+| Runtime | CODEX ONLY | Codex and the tested DeepSeek Harness capability path validated; designed for suitable image-capable Agents/Harnesses |
 | Visual behavior | Fixed and restrained | Scene-aware, controllable, and layout-aware |
 | Download | [Original release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [Current V3 RC](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) |
 
@@ -33,7 +31,7 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 
 - Want the original fixed visual behavior? Choose Original Edition.
 - Want scene adaptation, controls, layout profiles, or series consistency? Choose V3 Adaptive Edition.
-- Using a non-Codex Agent? Original is not supported. V3 may be suitable when the host provides the required image and local-processing capabilities, but additional runtime validation is still pending.
+- Using a non-Codex Agent? Original is not supported. V3 may be suitable when the host provides the required image and local-processing capabilities. The tested DeepSeek Harness capability path is independently verified; this does not imply that every Agent exposes the same native tools.
 - Want the smallest and most historically faithful package? Choose Original.
 - Want a more explicit contract around capabilities and verification? Choose V3.
 
@@ -42,10 +40,10 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 | Dimension | Original Edition | V3 Adaptive Edition |
 |---|---|---|
 | Positioning | Preserved pre-V3 workflow | Adaptive photo-plus-abstraction Skill |
-| Runtime environment | Codex only | Codex validated; capability-based compatibility designed |
+| Runtime environment | Codex only | Codex and the tested DeepSeek Harness capability path validated; capability-based compatibility designed |
 | Complexity | Smaller, fixed workflow | More inputs, profiles, and verification boundaries |
 | Art direction | Warm-ivory panel, muted source-derived motif, optical editorial spacing | Same editorial foundation plus scene-aware art direction and control resolution |
-| Source fidelity | Pixel-exact photo region validated in the Original example | Strict Fidelity pixel-exact photo region validated in Codex |
+| Source fidelity | Pixel-exact photo region validated in the Original example | Strict Fidelity pixel-exact photo region validated in Codex and the tested DeepSeek Harness path |
 | Creative controls | Manual title, panel, motif, alignment, and font overrides | Abstraction, Creative Freedom, Identity Preservation, Spatial Fidelity, each 0–100 |
 | Scene Profiles | None | 7: Pure Portrait, Environmental Portrait, Landscape, Architecture, Street/Crowd, Still Life, Minimal/Light |
 | Portrait adaptation | Source-derived unequal vertical anchors when appropriate | Portrait-aware scene profile and identity-preservation resolution |
@@ -53,10 +51,10 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 | QA | Machine validator plus visual QA; Original example has 9 validator checks | Structured 8-dimension QA, machine validator, and explicit HARD FAIL rules |
 | Retry | One targeted motif correction; stop after two motif attempts | One targeted correction after a complete attempt; stop on a remaining critical HARD FAIL |
 | Series | No Series Style Lock contract | Optional Series Style Lock process |
-| Agent compatibility | Codex only | Designed for suitable image-capable Agents/Harnesses; only Codex is currently validated |
+| Agent compatibility | Codex only | Codex and the tested DeepSeek Harness capability path are validated; other hosts remain capability-dependent |
 | Installation | Historical Original package | V3 Adaptive package and current RC |
 | Best use cases | Stable, familiar, Codex-specific original behavior | Different scenes, explicit controls, layout adaptation, and series work |
-| Main trade-off | Less adaptive and not portable beyond Codex | More process and capability requirements; external Agent validation is pending |
+| Main trade-off | Less adaptive and not portable beyond Codex | More process and capability requirements; native tools still vary by host |
 
 ## 🎯 Scope, Limitations & Guarantees
 
@@ -66,20 +64,20 @@ Best suited for one photograph, one text-free motif, and one fixed editorial com
 
 ### V3 Adaptive Edition
 
-Best suited for photographs that benefit from explicit scene reasoning, identity and spatial controls, adaptive layouts, or a series-level visual family. V3 does not invent unsupported people, buildings, objects, geography, text, logos, watermarks, swatches, or decorative facts. Image generation can vary across hosts and runs; the current public V3 evidence is Codex-side.
+Best suited for photographs that benefit from explicit scene reasoning, identity and spatial controls, adaptive layouts, or a series-level visual family. V3 does not invent unsupported people, buildings, objects, geography, text, logos, watermarks, swatches, or decorative facts. Image generation can vary across hosts and runs; current public evidence includes Codex Strict Fidelity and the independently tested DeepSeek Harness capability path.
 
 ### Guarantee Matrix
 
 | Capability | Original | V3 Strict Fidelity | V3 Native Image Edit | V3 Reference Generation |
 |---|---|---|---|---|
-| Source-aware behavior | Implemented and Codex-validated | Implemented and Codex-validated | Best effort | Best effort |
+| Source-aware behavior | Implemented and Codex-validated | Implemented and validated on Codex and the tested DeepSeek Harness path | Best effort | Best effort |
 | Scene adaptation | Fixed original behavior | Implemented and Codex-evaluated | Art-direction contract only | Art-direction contract only |
 | Creative controls | Manual overrides | 4 controls, 0–100 | Host-dependent best effort | Host-dependent best effort |
 | Pixel-exact photo region | Validated for Original example | Machine-validated when Strict conditions hold | Not guaranteed | Not guaranteed |
 | Exact local typography | Original compositor path | Local typography path | Not guaranteed | Not guaranteed |
 | Deterministic composition | Original local compositor | V3 local compositor | Not guaranteed | Not guaranteed |
 | Machine validation | Original validator | V3 validator and manifest | Not a Strict output | Not a Strict output |
-| Host compatibility | Codex only | Codex validated; suitable capability-based hosts designed for | Capability-dependent | Capability-dependent |
+| Host compatibility | Codex only | Codex and the tested DeepSeek Harness path validated; suitable capability-based hosts designed for | Capability-dependent | Capability-dependent |
 
 Native Image Edit and Reference Generation must never be described as machine-verified Strict output.
 
@@ -256,7 +254,7 @@ These three actual outputs were reviewed as a Codex-side series-style evaluation
 |---|---|---|
 | ![Series landscape](assets/readme/series/landscape.png) | ![Series street crowd](assets/readme/series/street-crowd.png) | ![Series minimal light](assets/readme/series/minimal-light.png) |
 
-This is a real visual PASS review of the documented Series Style Lock contract on Codex outputs. The current runtime does not expose a separate machine flag named Series Style Lock, and this does not constitute independent Agent validation.
+This is a real visual PASS review of the documented Series Style Lock contract on Codex outputs. The current runtime does not expose a separate machine flag named Series Style Lock; the series showcase itself remains Codex-side, while the independent DeepSeek validation covers the deterministic capability path described below.
 
 ## ⚙️ How It Works
 
@@ -288,6 +286,21 @@ The numbers below are from the current public source and release preparation, no
 
 Built to be checked, not just generated.
 
+## 🔬 Independent Validation
+
+An independent DeepSeek Harness run completed the deterministic capability path.
+
+- DeepSeek Harness: PASS
+- Strict Fidelity: VERIFIED on the tested pipeline
+- Repository tests: 41/41 passed
+- Structured visual/editorial QA: 8/8 PASS
+- Machine validator: `ok: true`; validator errors: `[]`
+- Blocking issues: 0
+- Cross-agent compatibility: VERIFIED for the tested capability path
+- Pipeline smoke checks: `remove_chroma_key.py`, `compose_editorial.py`, and `validate_editorial.py` all exited 0
+
+See the concise [DeepSeek Harness validation summary](docs/evals/deepseek-harness-validation.md). DeepSeek Harness did not expose native neural image generation during this validation, so motif synthesis used deterministic procedural Pillow generation. This limitation did not change the verified photo-region pixel exactness, source hash, geometry, typography, deterministic composition, or machine-validation results.
+
 ## 🌐 Compatibility
 
 ### Original Edition
@@ -296,9 +309,9 @@ Built to be checked, not just generated.
 
 ### V3 Adaptive Edition
 
-- Validated runtime: Codex.
+- Validated runtime paths: Codex Strict Fidelity and an independent DeepSeek Harness Strict Fidelity run.
 - Designed for capability-based compatibility: suitable image-capable Agents/Harnesses that provide the required capabilities.
-- Independent runtime validation on additional Agents: PENDING.
+- Cross-agent compatibility is verified for the tested capability path; this does not imply that every Agent exposes identical native tools.
 
 DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 
@@ -319,7 +332,7 @@ DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 - Release: [V3 Adaptive prerelease](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2)
 - Artifact: [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0-rc2/photo-abstract-editorial-skill.zip)
 - Validation: Codex-side tests and RC evidence PASS
-- Limitation: independent additional-Agent runtime validation pending
+- Independent validation: DeepSeek Harness PASS for the tested deterministic capability path
 
 Formal v3.0.0 is intentionally not released.
 
@@ -355,7 +368,7 @@ Yes. That is the purpose of the dual-edition release structure.
 
 ### Is V3 validated on Claude, Gemini, or Cursor?
 
-No. Additional Agent runtime validation is pending.
+Not in this repository's published evidence. DeepSeek Harness is independently verified for the tested deterministic capability path; other Agents remain capability-dependent and untested.
 
 ### What does Series Style Lock preserve?
 
@@ -396,9 +409,9 @@ V3 manifests record source/output hashes, rendered photo-region hash, panel geom
 ## 📌 Project Status
 
 - Original Edition: supported, preserved, and available as the historical v1.0.0 release.
-- V3 Adaptive Edition: current public release candidate with Codex validation.
+- V3 Adaptive Edition: current public release candidate with Codex validation and independent DeepSeek Harness validation for the tested capability path.
 - Documentation: three-language dual-edition README and real demo assets.
-- Independent additional-Agent runtime validation: pending.
+- Cross-agent compatibility: verified for the tested DeepSeek Harness capability path; other Agents remain untested.
 - Formal v3.0.0: not released.
 
 ## ⚖️ License

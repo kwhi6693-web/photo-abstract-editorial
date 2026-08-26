@@ -4,8 +4,6 @@
 
 [English](README.md) · [簡體中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-<img src="assets/readme/banner.png" alt="Photo Abstract Editorial 橫幅，展示真實源圖、Original 成片與 V3 成片" width="100%">
-
 [![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0--rc2-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
 
 本專案保留原照片的事實性，用克制的抽象面板承載視覺記憶，並在具備 Strict Fidelity 時本地渲染編輯標題。
@@ -17,7 +15,7 @@
 | | Original Edition | V3 Adaptive Edition |
 |---|---|---|
 | 定位 | 保留的原始 Codex 工作流 | 自適應、基於能力的 V3 工作流 |
-| 執行環境 | 僅支援 CODEX | Codex 已驗證；面向具備所需圖像能力的 Agents/Harnesses 設計 |
+| 執行環境 | 僅支援 CODEX | Codex 與已測試的 DeepSeek Harness 能力路徑已驗證；面向具備所需圖像能力的 Agents/Harnesses 設計 |
 | 視覺行為 | 固定、克制 | 場景感知、可控制、版式感知 |
 | 下載 | [Original 發布頁](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [目前 V3 RC](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) |
 
@@ -33,7 +31,7 @@
 
 - 想要原始固定視覺行為？選擇 Original Edition。
 - 需要場景適配、控制、版式設定或系列一致性？選擇 V3 Adaptive Edition。
-- 正在使用非 Codex Agent？Original 不支援。若宿主具備所需圖像與本地處理能力，V3 可能適用，但額外 Agent 執行環境驗證仍待完成。
+- 正在使用非 Codex Agent？Original 不支援。若宿主具備所需圖像與本地處理能力，V3 可能適用；已測試的 DeepSeek Harness 能力路徑已獨立驗證，但這不代表每個 Agent 都提供相同的原生工具。
 - 想要最小且最忠實於歷史的安裝包？選擇 Original。
 - 想要更明確的能力與驗證約束？選擇 V3。
 
@@ -42,10 +40,10 @@
 | 維度 | Original Edition | V3 Adaptive Edition |
 |---|---|---|
 | 定位 | V3 之前保留的工作流 | 自適應 photo-plus-abstraction Skill |
-| 執行環境 | 僅 Codex | Codex 已驗證；依基於能力的相容性設計 |
+| 執行環境 | 僅 Codex | Codex 與已測試的 DeepSeek Harness 能力路徑已驗證；依基於能力的相容性設計 |
 | 複雜度 | 更小、更固定 | 更多輸入、設定與驗證邊界 |
 | 藝術指導 | 暖象牙色面板、源圖派生的克制母題、光學編輯間距 | 保留編輯基礎，並增加場景感知藝術指導與控制解析度 |
-| 源圖保真度 | Original 範例已驗證 pixel-exact 攝影區域 | Codex Strict Fidelity 已驗證 pixel-exact 攝影區域 |
+| 源圖保真度 | Original 範例已驗證 pixel-exact 攝影區域 | Codex 與已測試的 DeepSeek Harness 路徑均已驗證 Strict Fidelity pixel-exact 攝影區域 |
 | 創意控制 | 手動標題、面板、母題、對齊與字型覆蓋 | Abstraction、Creative Freedom、Identity Preservation、Spatial Fidelity，各 0–100 |
 | 場景設定 | 無 | 7 個：Pure Portrait、Environmental Portrait、Landscape、Architecture、Street/Crowd、Still Life、Minimal/Light |
 | 肖像適配 | 在適合時使用源圖派生的不等高縱向錨點 | 肖像感知場景設定與身份保留解析度 |
@@ -53,10 +51,10 @@
 | QA | 機器驗證器 + 視覺 QA；Original 範例有 9 項驗證器檢查 | 結構化 8 維 QA、機器驗證器與明確的 HARD FAIL 規則 |
 | 重試 | 一次針對性母題修正；最多兩次母題嘗試 | 完整嘗試後最多一次針對性修正；關鍵 HARD FAIL 仍存在時停止 |
 | 系列 | 沒有 Series Style Lock 約束 | 可選 Series Style Lock 流程 |
-| Agent 相容性 | 僅 Codex | 面向具備能力的 image-capable Agents/Harnesses 設計；目前只有 Codex 已驗證 |
+| Agent 相容性 | 僅 Codex | Codex 與已測試的 DeepSeek Harness 能力路徑已驗證；其他宿主仍取決於能力 |
 | 安裝方式 | 歷史 Original 安裝包 | V3 Adaptive 安裝包與目前 RC |
 | 適用場景 | 穩定、熟悉、Codex-specific 的原始行為 | 不同場景、明確控制、版式適配與系列工作 |
-| 主要取捨 | 自適應較少，不能脫離 Codex | 流程與能力要求更多；額外 Agent 驗證待完成 |
+| 主要取捨 | 自適應較少，不能脫離 Codex | 流程與能力要求更多；各宿主的原生工具仍有差異 |
 
 ## 🎯 適用範圍、限制與能力保證
 
@@ -66,20 +64,20 @@
 
 ### V3 Adaptive Edition
 
-適合需要明確場景推理、身份與空間控制、自適應版式或系列視覺家族的照片。V3 不應憑空生成沒有來源的人物、建築、物體、地理、文字、logo、水印、色卡或裝飾事實。不同宿主與執行的圖像生成可能變化；目前公開 V3 證據來自 Codex。
+適合需要明確場景推理、身份與空間控制、自適應版式或系列視覺家族的照片。V3 不應憑空生成沒有來源的人物、建築、物體、地理、文字、logo、水印、色卡或裝飾事實。不同宿主與執行的圖像生成可能變化；目前公開證據包括 Codex Strict Fidelity 與已獨立測試的 DeepSeek Harness 能力路徑。
 
 ### 能力保證矩陣
 
 | 能力 | Original | V3 Strict Fidelity | V3 Native Image Edit | V3 Reference Generation |
 |---|---|---|---|---|
-| 源圖感知行為 | 已實現，並在 Codex 驗證 | 已實現，並在 Codex 驗證 | 盡力而為 | 盡力而為 |
+| 源圖感知行為 | 已實現，並在 Codex 驗證 | 已實現，並在 Codex 與已測試的 DeepSeek Harness 路徑驗證 | 盡力而為 | 盡力而為 |
 | 場景適配 | 原始固定行為 | 已實現，並在 Codex 評測 | 僅提供藝術指導約束 | 僅提供藝術指導約束 |
 | 創意控制 | 手動覆蓋 | 4 個控制項，0–100 | 取決於宿主，屬於盡力而為 | 取決於宿主，屬於盡力而為 |
 | 像素精確攝影區域 | Original 範例已驗證 | Strict 條件滿足時經機器驗證 | 不保證 | 不保證 |
 | 本地精確排版 | Original 合成器路徑 | 本地排版路徑 | 不保證 | 不保證 |
 | 確定性合成 | Original 本地合成器 | V3 本地合成器 | 不保證 | 不保證 |
 | 機器驗證 | Original 驗證器 | V3 驗證器與 manifest | 不屬於 Strict 成片 | 不屬於 Strict 成片 |
-| 宿主相容性 | 僅 Codex | Codex 已驗證；面向具備相應能力的宿主設計 | 取決於能力 | 取決於能力 |
+| 宿主相容性 | 僅 Codex | Codex 與已測試的 DeepSeek Harness 路徑已驗證；面向具備相應能力的宿主設計 | 取決於能力 | 取決於能力 |
 
 Native Image Edit 與 Reference Generation 不能被描述為機器驗證的 Strict 成片。
 
@@ -256,7 +254,7 @@ Original 保留固定的 lower-left 編輯行為。V3 將同一長地平線解�
 |---|---|---|
 | ![系列橫向成片](assets/readme/series/landscape.png) | ![系列街道人群成片](assets/readme/series/street-crowd.png) | ![系列極簡光線成片](assets/readme/series/minimal-light.png) |
 
-這是對文件化 Series Style Lock 約束的真實 Codex 視覺 PASS 評審。目前執行環境沒有名為 Series Style Lock 的獨立機器標誌，這也不構成獨立 Agent 驗證。
+這是對文件化 Series Style Lock 約束的真實 Codex 視覺 PASS 評審。目前執行環境沒有名為 Series Style Lock 的獨立機器標誌；系列演示本身仍是 Codex 側結果，而獨立 DeepSeek 驗證涵蓋下文所述的確定性能力路徑。
 
 ## ⚙️ 工作原理
 
@@ -288,6 +286,21 @@ Original 保留固定的 lower-left 編輯行為。V3 將同一長地平線解�
 
 重點是可驗證，而不只是生成。
 
+## 🔬 獨立驗證
+
+獨立的 DeepSeek Harness 已完成確定性能力路徑驗證。
+
+- DeepSeek Harness：PASS
+- Strict Fidelity：在本次測試流水線上 VERIFIED
+- 專案測試：41/41 通過
+- 結構化視覺/編輯 QA：8/8 PASS
+- 機器驗證器：`ok: true`；驗證錯誤：`[]`
+- 阻塞問題：0
+- 跨 Agent 相容性：針對已測試能力路徑 VERIFIED
+- 流程冒煙檢查：`remove_chroma_key.py`、`compose_editorial.py`、`validate_editorial.py` 均以 0 退出
+
+詳見簡潔的 [DeepSeek Harness 獨立驗證摘要](docs/evals/deepseek-harness-validation.md)。本次驗證中的 DeepSeek Harness 未提供原生神經圖像生成能力，因此母題使用確定性的 Pillow 程式化生成。該限制不影響已驗證的攝影區域逐像素一致性、源圖雜湊、幾何、排版、確定性合成或機器驗證結果。
+
 ## 🌐 相容性
 
 ### Original Edition
@@ -296,9 +309,9 @@ Original 保留固定的 lower-left 編輯行為。V3 將同一長地平線解�
 
 ### V3 Adaptive Edition
 
-- 已驗證的執行環境：Codex。
+- 已驗證的執行環境路徑：Codex Strict Fidelity，以及獨立的 DeepSeek Harness Strict Fidelity 執行。
 - 按能力設計：面向具備所需能力的圖像 Agents/Harnesses。
-- 在額外 Agent 上的獨立執行環境驗證：待完成。
+- 針對已測試能力路徑的跨 Agent 相容性已驗證；這不代表每個 Agent 都提供相同的原生工具。
 
 DESIGNED FOR COMPATIBILITY 不等於 VALIDATED。
 
@@ -319,7 +332,7 @@ DESIGNED FOR COMPATIBILITY 不等於 VALIDATED。
 - 發布頁：[V3 Adaptive 預發布版本](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2)
 - 安裝包：[photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0-rc2/photo-abstract-editorial-skill.zip)
 - 驗證：Codex 側測試與 RC 證據 PASS
-- 限制：獨立的額外 Agent 執行環境驗證待完成
+- 獨立驗證：DeepSeek Harness 針對已測試確定性能力路徑 PASS
 
 正式 v3.0.0 有意不發布。
 
@@ -355,7 +368,7 @@ Original 使用者不需要遷移；兩個安裝包可以並行保留。
 
 ### V3 已在 Claude、Gemini 或 Cursor 上驗證了嗎？
 
-沒有。額外 Agent 執行環境驗證待完成。
+沒有納入本專案的公開驗證證據。DeepSeek Harness 已針對已測試確定性能力路徑完成獨立驗證；其他 Agent 仍取決於能力且尚未測試。
 
 ### Series Style Lock 實際保留什麼？
 
@@ -396,9 +409,9 @@ V3 manifest 記錄源圖/輸出雜湊、渲染後攝影區域雜湊、面板幾�
 ## 📌 專案狀態
 
 - Original Edition：支援、保留，並作為歷史 v1.0.0 發布版本提供。
-- V3 Adaptive Edition：目前公開候選版本，已完成 Codex 驗證。
+- V3 Adaptive Edition：目前公開候選版本，已完成 Codex 驗證，並針對已測試能力路徑完成 DeepSeek Harness 獨立驗證。
 - 文件：三語言雙版本 README 與真實演示素材。
-- 獨立的額外 Agent 執行環境驗證：待完成。
+- 跨 Agent 相容性：針對已測試的 DeepSeek Harness 能力路徑已驗證；其他 Agent 尚未測試。
 - 正式 v3.0.0：未發布。
 
 ## ⚖️ 授權條款
