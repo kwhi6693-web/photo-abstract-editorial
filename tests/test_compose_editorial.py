@@ -174,6 +174,7 @@ class ComposeEditorialTests(unittest.TestCase):
         module = load_composer()
         cases = [
             ({"scene_profile": "landscape", "dominant_axis": "horizontal"}, "wide-horizon"),
+            ({"scene_profile": "landscape", "negative_space": "generous"}, "wide-horizon"),
             ({"scene_profile": "pure-portrait", "dominant_axis": "vertical"}, "vertical-monument"),
             ({"scene_profile": "architecture", "subject_location": "center"}, "centered-archive"),
             ({"scene_profile": "still-life", "negative_space": "generous"}, "sparse-object"),

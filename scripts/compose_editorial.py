@@ -162,10 +162,10 @@ def select_layout_profile(
         return "vertical-monument"
     if scene in {"architecture", "tower", "vertical-subject"} and axis == "vertical":
         return "vertical-monument"
-    if scene in {"still-life", "single-object", "minimal-object"} or space in {"generous", "large"}:
-        return "sparse-object"
     if scene in {"landscape", "wide-horizon", "sea", "lake", "road"}:
         return "wide-horizon"
+    if scene in {"still-life", "single-object", "minimal-object"} or space in {"generous", "large"}:
+        return "sparse-object"
     if axis == "horizontal" or orientation == "landscape-wide":
         return "wide-horizon"
     return "lower-editorial"
