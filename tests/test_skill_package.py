@@ -42,7 +42,8 @@ class SkillPackageTests(unittest.TestCase):
         self.assertIn("kwhi6693-web/photo-abstract-editorial", readme)
         self.assertIn("dist/photo-abstract-editorial-skill.zip", readme)
         self.assertIn("releases/tag/v1.0.0", readme)
-        self.assertIn("releases/tag/v3.0.0-rc2", readme)
+        self.assertIn("releases/tag/v3.0.0", readme)
+        self.assertNotIn("releases/tag/v3.0.0-rc2", readme)
         self.assertIn("photo-abstract-editorial-original.zip", readme)
 
     def test_release_archive_contains_current_v3_runtime_files(self) -> None:

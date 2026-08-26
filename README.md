@@ -4,7 +4,7 @@ Turn one photograph into an editorial composition built from the original photo,
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0--rc2-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
+[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
 
 This project keeps the source photograph factual, uses a restrained abstraction panel to carry visual memory, and renders the editorial title locally when Strict Fidelity is available.
 
@@ -17,7 +17,7 @@ This project keeps the source photograph factual, uses a restrained abstraction 
 | Positioning | The preserved original Codex workflow | The adaptive, capability-based V3 workflow |
 | Runtime | CODEX ONLY | Codex and the tested DeepSeek Harness capability path validated; designed for suitable image-capable Agents/Harnesses |
 | Visual behavior | Fixed and restrained | Scene-aware, controllable, and layout-aware |
-| Download | [Original release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [Current V3 RC](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) |
+| Download | [Original release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [V3 Adaptive release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) |
 
 ### Original Edition
 
@@ -52,7 +52,7 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 | Retry | One targeted motif correction; stop after two motif attempts | One targeted correction after a complete attempt; stop on a remaining critical HARD FAIL |
 | Series | No Series Style Lock contract | Optional Series Style Lock process |
 | Agent compatibility | Codex only | Codex and the tested DeepSeek Harness capability path are validated; other hosts remain capability-dependent |
-| Installation | Historical Original package | V3 Adaptive package and current RC |
+| Installation | Historical Original package | V3 Adaptive package and current stable release |
 | Best use cases | Stable, familiar, Codex-specific original behavior | Different scenes, explicit controls, layout adaptation, and series work |
 | Main trade-off | Less adaptive and not portable beyond Codex | More process and capability requirements; native tools still vary by host |
 
@@ -150,7 +150,7 @@ The repository copy is [dist/photo-abstract-editorial-original.zip](dist/photo-a
 
 ### V3 Adaptive Edition
 
-Download [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0-rc2/photo-abstract-editorial-skill.zip), or ask Codex to install the root Skill from the public repository:
+Download [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip), or ask Codex to install the root Skill from the public repository:
 
 The repository copy is [dist/photo-abstract-editorial-skill.zip](dist/photo-abstract-editorial-skill.zip).
 
@@ -272,7 +272,7 @@ Transparent motif → portable chroma cleanup → deterministic composer → exa
 
 ## ✅ Validation
 
-The numbers below are from the current public source and release preparation, not historical estimates.
+The numbers below are from the current public source and the v3.0.0 release, not historical estimates.
 
 - Original Edition: 32/32 tests passed in the isolated v1.0.0 worktree.
 - Original Edition: its own builder and --check passed; its historical example validator returned ok=true.
@@ -326,15 +326,15 @@ DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 - Demo: preserved historical README source/result pair
 - Audit: [Original Edition feature and provenance audit](docs/releases/original-edition.md)
 
-### Photo Abstract Editorial V3 Adaptive — v3.0.0-rc2
+### Photo Abstract Editorial V3 Adaptive — v3.0.0
 
-- Tag: v3.0.0-rc2
-- Release: [V3 Adaptive prerelease](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2)
-- Artifact: [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0-rc2/photo-abstract-editorial-skill.zip)
-- Validation: Codex-side tests and RC evidence PASS
+- Tag: v3.0.0
+- Release: [V3 Adaptive stable release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0)
+- Artifact: [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip)
+- Validation: Codex regression, build, package, and release-preflight checks PASS
 - Independent validation: DeepSeek Harness PASS for the tested deterministic capability path
 
-Formal v3.0.0 is intentionally not released.
+v3.0.0 is the current formal stable release.
 
 ## 🔄 Switching / Upgrade Guide
 
@@ -409,10 +409,10 @@ V3 manifests record source/output hashes, rendered photo-region hash, panel geom
 ## 📌 Project Status
 
 - Original Edition: supported, preserved, and available as the historical v1.0.0 release.
-- V3 Adaptive Edition: current public release candidate with Codex validation and independent DeepSeek Harness validation for the tested capability path.
+- V3 Adaptive Edition: current formal stable release with Codex validation and independent DeepSeek Harness validation for the tested capability path.
 - Documentation: three-language dual-edition README and real demo assets.
 - Cross-agent compatibility: verified for the tested DeepSeek Harness capability path; other Agents remain untested.
-- Formal v3.0.0: not released.
+- Formal v3.0.0: current stable release.
 
 ## ⚖️ License
 

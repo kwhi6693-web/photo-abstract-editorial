@@ -4,7 +4,7 @@
 
 [English](README.md) · [簡體中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0--rc2-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
+[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
 
 本專案保留原照片的事實性，用克制的抽象面板承載視覺記憶，並在具備 Strict Fidelity 時本地渲染編輯標題。
 
@@ -17,7 +17,7 @@
 | 定位 | 保留的原始 Codex 工作流 | 自適應、基於能力的 V3 工作流 |
 | 執行環境 | 僅支援 CODEX | Codex 與已測試的 DeepSeek Harness 能力路徑已驗證；面向具備所需圖像能力的 Agents/Harnesses 設計 |
 | 視覺行為 | 固定、克制 | 場景感知、可控制、版式感知 |
-| 下載 | [Original 發布頁](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [目前 V3 RC](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) |
+| 下載 | [Original 發布頁](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [V3 Adaptive 正式版](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) |
 
 ### Original Edition
 
@@ -52,7 +52,7 @@
 | 重試 | 一次針對性母題修正；最多兩次母題嘗試 | 完整嘗試後最多一次針對性修正；關鍵 HARD FAIL 仍存在時停止 |
 | 系列 | 沒有 Series Style Lock 約束 | 可選 Series Style Lock 流程 |
 | Agent 相容性 | 僅 Codex | Codex 與已測試的 DeepSeek Harness 能力路徑已驗證；其他宿主仍取決於能力 |
-| 安裝方式 | 歷史 Original 安裝包 | V3 Adaptive 安裝包與目前 RC |
+| 安裝方式 | 歷史 Original 安裝包 | V3 Adaptive 安裝包與目前正式穩定版 |
 | 適用場景 | 穩定、熟悉、Codex-specific 的原始行為 | 不同場景、明確控制、版式適配與系列工作 |
 | 主要取捨 | 自適應較少，不能脫離 Codex | 流程與能力要求更多；各宿主的原生工具仍有差異 |
 
@@ -150,7 +150,7 @@ Photo Abstract Editorial 將事實照片與生成的抽象母題分開，讓版�
 
 ### V3 Adaptive Edition
 
-下載 [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0-rc2/photo-abstract-editorial-skill.zip)，或直接讓 Codex 從公開儲存庫安裝根目錄 Skill：
+下載 [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip)，或直接讓 Codex 從公開儲存庫安裝根目錄 Skill：
 
 儲存庫中的副本是 [dist/photo-abstract-editorial-skill.zip](dist/photo-abstract-editorial-skill.zip)。
 
@@ -272,7 +272,7 @@ Original 保留固定的 lower-left 編輯行為。V3 將同一長地平線解�
 
 ## ✅ 驗證
 
-以下數字來自目前公開原始碼與本輪發布準備，不是歷史估算。
+以下數字來自目前公開原始碼與 v3.0.0 正式發布，不是歷史估算。
 
 - Original Edition：隔離的 v1.0.0 工作樹中 32/32 測試通過。
 - Original Edition：自身構建器與 --check 通過；歷史範例驗證器返回 ok=true。
@@ -326,15 +326,15 @@ DESIGNED FOR COMPATIBILITY 不等於 VALIDATED。
 - 演示：保留歷史 README 源圖/成片對
 - 審計：[Original Edition 功能與來源審計](docs/releases/original-edition.md)
 
-### Photo Abstract Editorial V3 Adaptive — v3.0.0-rc2
+### Photo Abstract Editorial V3 Adaptive — v3.0.0
 
-- 標籤：v3.0.0-rc2
-- 發布頁：[V3 Adaptive 預發布版本](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2)
-- 安裝包：[photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0-rc2/photo-abstract-editorial-skill.zip)
-- 驗證：Codex 側測試與 RC 證據 PASS
+- 標籤：v3.0.0
+- 發布頁：[V3 Adaptive 正式穩定版](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0)
+- 安裝包：[photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip)
+- 驗證：Codex 回歸、構建、安裝包與正式發布前校驗 PASS
 - 獨立驗證：DeepSeek Harness 針對已測試確定性能力路徑 PASS
 
-正式 v3.0.0 有意不發布。
+v3.0.0 是目前正式穩定版。
 
 ## 🔄 版本選擇與切換
 
@@ -409,10 +409,10 @@ V3 manifest 記錄源圖/輸出雜湊、渲染後攝影區域雜湊、面板幾�
 ## 📌 專案狀態
 
 - Original Edition：支援、保留，並作為歷史 v1.0.0 發布版本提供。
-- V3 Adaptive Edition：目前公開候選版本，已完成 Codex 驗證，並針對已測試能力路徑完成 DeepSeek Harness 獨立驗證。
+- V3 Adaptive Edition：目前正式穩定版，已完成 Codex 驗證，並針對已測試能力路徑完成 DeepSeek Harness 獨立驗證。
 - 文件：三語言雙版本 README 與真實演示素材。
 - 跨 Agent 相容性：針對已測試的 DeepSeek Harness 能力路徑已驗證；其他 Agent 尚未測試。
-- 正式 v3.0.0：未發布。
+- 正式 v3.0.0：目前穩定版。
 
 ## ⚖️ 授權條款
 

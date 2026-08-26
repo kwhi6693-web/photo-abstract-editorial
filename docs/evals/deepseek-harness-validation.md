@@ -1,6 +1,6 @@
 # DeepSeek Harness Independent Validation
 
-This public summary records the independent validation result. Raw validation archives, full execution logs, temporary workspaces, and machine-specific paths are intentionally excluded.
+This public summary records the independent validation result supporting the V3 Adaptive v3.0.0 release. Raw validation archives, full execution logs, temporary workspaces, and machine-specific paths are intentionally excluded.
 
 ## Environment
 
@@ -8,7 +8,7 @@ This public summary records the independent validation result. Raw validation ar
 - Host: Windows 11 / PowerShell
 - Python: 3.12.0
 - Pillow: 12.2.0
-- Scope: the existing repository Strict Fidelity capability path
+- Release scope: V3 Adaptive v3.0.0; evidence covers only the existing repository Strict Fidelity capability path tested here
 - Motif synthesis: deterministic procedural Pillow generation; no native neural image generation was exposed during this run
 
 ## Result
