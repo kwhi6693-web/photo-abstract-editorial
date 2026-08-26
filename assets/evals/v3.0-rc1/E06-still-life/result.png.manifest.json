@@ -1,0 +1,127 @@
+{
+  "layout_grid": {
+    "inset": 125,
+    "inset_ratio": 0.1,
+    "profile": "sparse-object"
+  },
+  "layout_profile": "sparse-object",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 0,
+      "removed_pixels": 1997,
+      "resized_min_component_area": 215
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "1ca7d05830b6e92ca17f8fab3475db0bef6e0315f393a84d08b7dc03dbbfef48"
+  },
+  "motif_region": {
+    "height": 229,
+    "width": 376,
+    "x": 439,
+    "y": 1447
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "horizontal",
+    "font_path": null,
+    "layout": "auto",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "generous",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "still-life",
+    "source_orientation": "square",
+    "subject_location": "center",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "Weight of Yellow",
+    "title_accent": "of",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "4c3d109d4acbbd6e789ee6dd404c197775e3a16b266de14de682f4dc6a8af03b",
+    "size": [
+      1254,
+      2132
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 878,
+    "y": 1254
+  },
+  "photo_region": {
+    "height": 1254,
+    "pixel_exact": true,
+    "pixel_sha256": "9a2a5194c569903ac292a19211f08a04028eae77d0018c4c73219b3c7ac806d6",
+    "width": 1254,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "9a2a5194c569903ac292a19211f08a04028eae77d0018c4c73219b3c7ac806d6",
+    "sha256": "2eb8a2e68c96ee72abb7b4879330ca009b219e49db5b3b1c36eb85376139ed6c",
+    "visual_size": [
+      1254,
+      1254
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 150,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "auto",
+    "layout_profile": "sparse-object",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "Weight of Yellow",
+    "title_accent": "of",
+    "title_anchor_x": 140,
+    "title_color": "#34343A",
+    "title_font_size": 51,
+    "title_optical_offset": 15,
+    "title_region": {
+      "height": 47,
+      "width": 360,
+      "x": 140,
+      "y": 1935
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 51,
+        "style": "primary",
+        "text": "Weight "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 36,
+        "style": "accent",
+        "text": "of"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 51,
+        "style": "primary",
+        "text": " Yellow"
+      }
+    ]
+  }
+}

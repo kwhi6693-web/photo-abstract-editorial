@@ -1,0 +1,127 @@
+{
+  "layout_grid": {
+    "inset": 108,
+    "inset_ratio": 0.07,
+    "profile": "lower-editorial"
+  },
+  "layout_profile": "lower-editorial",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 155,
+      "removed_pixels": 14230,
+      "resized_min_component_area": 379
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "ed34e8de48276fde691174ccf389f53c1794f56c1aefc00368ded5d34bdbffa5"
+  },
+  "motif_region": {
+    "height": 311,
+    "width": 488,
+    "x": 108,
+    "y": 1155
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "vertical",
+    "font_path": null,
+    "layout": "auto",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "balanced",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "street-crowd",
+    "source_orientation": "landscape",
+    "subject_location": "center",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "After the Rain",
+    "title_accent": "the",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "1cb844fb5437a60245e111e3b85736a597492e87cd35a12fc162fd40d7bbbfd1",
+    "size": [
+      1536,
+      1843
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 819,
+    "y": 1024
+  },
+  "photo_region": {
+    "height": 1024,
+    "pixel_exact": true,
+    "pixel_sha256": "4f002751d59c22a6c2d4c621c1806696736fb738e4b4feef2af434303d6b5304",
+    "width": 1536,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "4f002751d59c22a6c2d4c621c1806696736fb738e4b4feef2af434303d6b5304",
+    "sha256": "f2461086a619d730a4a8e1a00f7a7b52f947388d982514f7af4eeaf4941e01cc",
+    "visual_size": [
+      1536,
+      1024
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 177,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "auto",
+    "layout_profile": "lower-editorial",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "After the Rain",
+    "title_accent": "the",
+    "title_anchor_x": 126,
+    "title_color": "#34343A",
+    "title_font_size": 63,
+    "title_optical_offset": 18,
+    "title_region": {
+      "height": 43,
+      "width": 351,
+      "x": 126,
+      "y": 1623
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": "After "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 44,
+        "style": "accent",
+        "text": "the"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": " Rain"
+      }
+    ]
+  }
+}

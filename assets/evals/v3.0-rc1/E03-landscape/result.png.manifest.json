@@ -1,0 +1,127 @@
+{
+  "layout_grid": {
+    "inset": 123,
+    "inset_ratio": 0.08,
+    "profile": "wide-horizon"
+  },
+  "layout_profile": "wide-horizon",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 17,
+      "removed_pixels": 8089,
+      "resized_min_component_area": 532
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "de09edd049fbbedcbc7b17a581b34f1ce82c1085a370af787bd8547cc583ef8f"
+  },
+  "motif_region": {
+    "height": 311,
+    "width": 684,
+    "x": 426,
+    "y": 1170
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "horizontal",
+    "font_path": null,
+    "layout": "auto",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "generous",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "landscape",
+    "source_orientation": "landscape-wide",
+    "subject_location": "left",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "Where the Marsh Opens",
+    "title_accent": "the",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "2f7f0c91534b600b2ec97198f2eeeaea878948f3f20de1761a51489d8c08552a",
+    "size": [
+      1537,
+      1841
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 818,
+    "y": 1023
+  },
+  "photo_region": {
+    "height": 1023,
+    "pixel_exact": true,
+    "pixel_sha256": "a2aa87818740e3bb93146982292cbf18aeb30dfeac6384f3d2eb80e122dd6220",
+    "width": 1537,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "a2aa87818740e3bb93146982292cbf18aeb30dfeac6384f3d2eb80e122dd6220",
+    "sha256": "888df6685fc45fa53c4ed04a5f9d820a2956ef6b2043161b44ca1a3ae2ea50ff",
+    "visual_size": [
+      1537,
+      1023
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 169,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "auto",
+    "layout_profile": "wide-horizon",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "Where the Marsh Opens",
+    "title_accent": "the",
+    "title_anchor_x": 141,
+    "title_color": "#34343A",
+    "title_font_size": 63,
+    "title_optical_offset": 18,
+    "title_region": {
+      "height": 58,
+      "width": 601,
+      "x": 141,
+      "y": 1614
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": "Where "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 44,
+        "style": "accent",
+        "text": "the"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": " Marsh Opens"
+      }
+    ]
+  }
+}

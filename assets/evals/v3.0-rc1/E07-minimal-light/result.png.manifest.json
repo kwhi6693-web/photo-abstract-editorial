@@ -1,0 +1,127 @@
+{
+  "layout_grid": {
+    "inset": 154,
+    "inset_ratio": 0.1,
+    "profile": "sparse-object"
+  },
+  "layout_profile": "sparse-object",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 0,
+      "removed_pixels": 1867,
+      "resized_min_component_area": 240
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "e448c52f370611e3123c8746b8aecd35f62066ec5b54995d2475bc1f7f4ba4ad"
+  },
+  "motif_region": {
+    "height": 311,
+    "width": 309,
+    "x": 614,
+    "y": 1203
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "diagonal",
+    "font_path": null,
+    "layout": "auto",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "large",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "minimal-light",
+    "source_orientation": "landscape",
+    "subject_location": "right",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "A Room for Light",
+    "title_accent": "for",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "60b1e5f6df82f35a812662822f350e4f82dbaff11b8dd5291fb9825fbaf59d2f",
+    "size": [
+      1537,
+      1841
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 818,
+    "y": 1023
+  },
+  "photo_region": {
+    "height": 1023,
+    "pixel_exact": true,
+    "pixel_sha256": "b4e9ef0fbbd0738202362ae9543a55009f21b8be04d136d51b9da92ba7eef0de",
+    "width": 1537,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "b4e9ef0fbbd0738202362ae9543a55009f21b8be04d136d51b9da92ba7eef0de",
+    "sha256": "85e9df9137f2c6ecf61fd238fcb64a85ea7cbcfb49791a3814f257d83772bf30",
+    "visual_size": [
+      1537,
+      1023
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 184,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "auto",
+    "layout_profile": "sparse-object",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "A Room for Light",
+    "title_accent": "for",
+    "title_anchor_x": 172,
+    "title_color": "#34343A",
+    "title_font_size": 63,
+    "title_optical_offset": 18,
+    "title_region": {
+      "height": 58,
+      "width": 448,
+      "x": 172,
+      "y": 1599
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": "A Room "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 44,
+        "style": "accent",
+        "text": "for"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": " Light"
+      }
+    ]
+  }
+}

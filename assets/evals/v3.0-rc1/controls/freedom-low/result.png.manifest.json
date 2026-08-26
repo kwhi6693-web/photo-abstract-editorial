@@ -1,0 +1,115 @@
+{
+  "layout_grid": {
+    "inset": 123,
+    "inset_ratio": 0.08,
+    "profile": "wide-horizon"
+  },
+  "layout_profile": "wide-horizon",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 2,
+      "removed_pixels": 3695,
+      "resized_min_component_area": 438
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "602b47db44af488bd2643b20620044072982742c2cc1d1f9e3cc81ed8d2fb6f8"
+  },
+  "motif_region": {
+    "height": 311,
+    "width": 563,
+    "x": 487,
+    "y": 1170
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "horizontal",
+    "font_path": null,
+    "layout": "wide-horizon",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "balanced",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "landscape",
+    "source_orientation": "landscape-wide",
+    "subject_location": "left",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "Marsh Study",
+    "title_accent": null,
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "a00bd73289c3f2fdccb587d67f62bfd9e468a1e6f2d94c32e22023c99d3d059c",
+    "size": [
+      1537,
+      1841
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 818,
+    "y": 1023
+  },
+  "photo_region": {
+    "height": 1023,
+    "pixel_exact": true,
+    "pixel_sha256": "a2aa87818740e3bb93146982292cbf18aeb30dfeac6384f3d2eb80e122dd6220",
+    "width": 1537,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "a2aa87818740e3bb93146982292cbf18aeb30dfeac6384f3d2eb80e122dd6220",
+    "sha256": "888df6685fc45fa53c4ed04a5f9d820a2956ef6b2043161b44ca1a3ae2ea50ff",
+    "visual_size": [
+      1537,
+      1023
+    ]
+  },
+  "typography": {
+    "accent_font_file": null,
+    "bottom_inset": 169,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "wide-horizon",
+    "layout_profile": "wide-horizon",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "Marsh Study",
+    "title_accent": null,
+    "title_anchor_x": 141,
+    "title_color": "#34343A",
+    "title_font_size": 63,
+    "title_optical_offset": 18,
+    "title_region": {
+      "height": 58,
+      "width": 341,
+      "x": 141,
+      "y": 1614
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": "Marsh Study"
+      }
+    ]
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "layout_grid": {
+    "inset": 82,
+    "inset_ratio": 0.08,
+    "profile": "vertical-monument"
+  },
+  "layout_profile": "vertical-monument",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 105,
+      "removed_pixels": 5585,
+      "resized_min_component_area": 151
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "493751d4d66bb5d770c931e5fa078071ecab2361f4c12621e0770a1292a41cea"
+  },
+  "motif_region": {
+    "height": 321,
+    "width": 188,
+    "x": 418,
+    "y": 1637
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "vertical",
+    "font_path": null,
+    "layout": "auto",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "generous",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "pure-portrait",
+    "source_orientation": "portrait",
+    "subject_location": "right",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "Held in Quiet",
+    "title_accent": "in",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "816b9685e386690a4e07d1eb3a777b449c12f2c9d68d37c2068ce89766981b7b",
+    "size": [
+      1024,
+      2381
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 845,
+    "y": 1536
+  },
+  "photo_region": {
+    "height": 1536,
+    "pixel_exact": true,
+    "pixel_sha256": "64d87e27ed0c676ef83c9cc03e1775a88320c15fcee10ee781fdab8dc53aff65",
+    "width": 1024,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "64d87e27ed0c676ef83c9cc03e1775a88320c15fcee10ee781fdab8dc53aff65",
+    "sha256": "51011f4183414b5f494e4a5ef7530faaf51a44430ccfbefdb9962c602891d1f4",
+    "visual_size": [
+      1024,
+      1536
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 113,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "auto",
+    "layout_profile": "vertical-monument",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "Held in Quiet",
+    "title_accent": "in",
+    "title_anchor_x": 398,
+    "title_color": "#34343A",
+    "title_font_size": 42,
+    "title_optical_offset": 0,
+    "title_region": {
+      "height": 38,
+      "width": 228,
+      "x": 398,
+      "y": 2230
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 42,
+        "style": "primary",
+        "text": "Held "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 29,
+        "style": "accent",
+        "text": "in"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 42,
+        "style": "primary",
+        "text": " Quiet"
+      }
+    ]
+  }
+}

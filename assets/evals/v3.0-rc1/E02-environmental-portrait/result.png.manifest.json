@@ -1,0 +1,127 @@
+{
+  "layout_grid": {
+    "inset": 123,
+    "inset_ratio": 0.08,
+    "profile": "vertical-monument"
+  },
+  "layout_profile": "vertical-monument",
+  "manifest_version": 1,
+  "motif": {
+    "cleanup": {
+      "initial_min_component_area": 79,
+      "removed_components": 48,
+      "removed_pixels": 4234,
+      "resized_min_component_area": 299
+    },
+    "file_name": "motif-clean.png",
+    "sha256": "7eb283afab63b402dd6206475a8104e140455cb085236bfa667ee9a8ac10b145"
+  },
+  "motif_region": {
+    "height": 311,
+    "width": 384,
+    "x": 576,
+    "y": 1122
+  },
+  "options": {
+    "accent_font_path": null,
+    "accent_scale": 0.7,
+    "dominant_axis": "horizontal",
+    "font_path": null,
+    "layout": "auto",
+    "margin_ratio": 0.07,
+    "motif_center_x": null,
+    "motif_top_ratio": 0.16,
+    "motif_width_ratio": 0.54,
+    "negative_space": "balanced",
+    "panel_color": "#E8E1D5",
+    "panel_height": null,
+    "scene_profile": "environmental-portrait",
+    "source_orientation": "landscape",
+    "subject_location": "left",
+    "subtitle": null,
+    "subtitle_color": null,
+    "subtitle_font_path": null,
+    "target_width": null,
+    "title": "Across the Breakwater",
+    "title_accent": "the",
+    "title_bottom_inset_ratio": 0.115,
+    "title_color": "#34343A",
+    "title_optical_offset_ratio": 0.012,
+    "title_size_ratio": 0.041
+  },
+  "output": {
+    "file_name": "result.png",
+    "sha256": "dd52f01b995b62e7d6d3864fe9c71ab9cfda51518b5c3b8b27d08df2cb9fc636",
+    "size": [
+      1536,
+      1843
+    ]
+  },
+  "panel": {
+    "color": "#E8E1D5",
+    "height": 819,
+    "y": 1024
+  },
+  "photo_region": {
+    "height": 1024,
+    "pixel_exact": true,
+    "pixel_sha256": "a7bff1b9a8dcdb6a2bc0eaafc54cc154c3c8d3f1fad4eb3c64af91fd9f0a1c55",
+    "width": 1536,
+    "x": 0,
+    "y": 0
+  },
+  "source": {
+    "file_name": "source.png",
+    "rendered_pixel_sha256": "a7bff1b9a8dcdb6a2bc0eaafc54cc154c3c8d3f1fad4eb3c64af91fd9f0a1c55",
+    "sha256": "10349e818bb41ed44c2e9a71416c2d8825e78af268f7b9502f86870909afcd9d",
+    "visual_size": [
+      1536,
+      1024
+    ]
+  },
+  "typography": {
+    "accent_font_file": "BOD_I.TTF",
+    "bottom_inset": 169,
+    "font_file": "BOD_R.TTF",
+    "kerning_mode": "whole-run",
+    "layout": "auto",
+    "layout_profile": "vertical-monument",
+    "subtitle": null,
+    "subtitle_color": "#34343A",
+    "subtitle_font_file": null,
+    "subtitle_font_size": null,
+    "subtitle_region": null,
+    "title": "Across the Breakwater",
+    "title_accent": "the",
+    "title_anchor_x": 485,
+    "title_color": "#34343A",
+    "title_font_size": 63,
+    "title_optical_offset": 0,
+    "title_region": {
+      "height": 43,
+      "width": 566,
+      "x": 485,
+      "y": 1631
+    },
+    "title_runs": [
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": "Across "
+      },
+      {
+        "font_file": "BOD_I.TTF",
+        "font_size": 44,
+        "style": "accent",
+        "text": "the"
+      },
+      {
+        "font_file": "BOD_R.TTF",
+        "font_size": 63,
+        "style": "primary",
+        "text": " Breakwater"
+      }
+    ]
+  }
+}
