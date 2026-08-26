@@ -33,15 +33,17 @@ def load_package_builder():
 
 
 class SkillPackageTests(unittest.TestCase):
-    def test_public_readme_is_bilingual_and_documents_github_install(self) -> None:
-        """Catch publishing a README that omits either audience or the reusable install path."""
+    def test_public_readme_is_multilingual_and_documents_dual_release(self) -> None:
+        """Catch a public README that omits a language edition or either real release."""
         readme = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
-        self.assertIn("[中文](#中文)", readme)
-        self.assertIn("[English](#english)", readme)
+        self.assertIn("[English](README.md)", readme)
+        self.assertIn("[简体中文](README.zh-CN.md)", readme)
+        self.assertIn("[繁體中文](README.zh-TW.md)", readme)
         self.assertIn("kwhi6693-web/photo-abstract-editorial", readme)
         self.assertIn("dist/photo-abstract-editorial-skill.zip", readme)
-        self.assertIn("公开仓库", readme)
-        self.assertIn("Public repository", readme)
+        self.assertIn("releases/tag/v1.0.0", readme)
+        self.assertIn("releases/tag/v3.0.0-rc2", readme)
+        self.assertIn("photo-abstract-editorial-original.zip", readme)
 
     def test_release_archive_contains_current_v3_runtime_files(self) -> None:
         """Catch a public download that is stale, incomplete, or contains development files."""
