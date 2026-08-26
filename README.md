@@ -1,30 +1,18 @@
-# PHOTO ABSTRACT EDITORIAL
+# 🎨 Photo Abstract Editorial
 
-## 01. Hero
-
-**Two Editions. One Project. Your Choice.**
-
-An Agent Skill that turns an ordinary photograph into a Photo Abstract Editorial composition: the source photograph remains the factual anchor, while a restrained abstract panel and exact English title create the editorial reading.
-
-![V3 Adaptive same-source hero: sunset horizon photograph with a source-derived abstract panel and exact title](assets/readme/hero/v3-original-source.png)
+Turn one photograph into an editorial composition built from the original photo, an abstract memory panel, and a poetic English title.
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-[Original Edition](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) · [V3 Adaptive Edition](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2)
+<img src="assets/readme/banner.png" alt="Photo Abstract Editorial banner showing the real source, Original result, and V3 result" width="100%">
 
-This project keeps two real editions available. Neither edition replaces the other; they optimize for different workflows, environments, and kinds of control.
+[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0--rc2-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0-rc2) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
 
-## 02. Language Switcher
+This project keeps the source photograph factual, uses a restrained abstraction panel to carry visual memory, and renders the editorial title locally when Strict Fidelity is available.
 
-- [English](README.md)
-- [简体中文](README.zh-CN.md)
-- [繁體中文](README.zh-TW.md)
+**One project, two editions. You choose.**
 
-## 03. Quick Navigation
-
-[Choose an edition](#04-choose-your-edition) · [Compare editions](#06-original-vs-v3-comparison) · [Scope and guarantees](#07-scope--limitations--guarantees) · [Real demos](#15-real-demo-gallery) · [Validation](#20-validation) · [Releases](#22-releases)
-
-## 04. Choose Your Edition
+## 🧭 Choose Your Edition
 
 | | Original Edition | V3 Adaptive Edition |
 |---|---|---|
@@ -41,7 +29,7 @@ Choose Original when you want the historical fixed workflow, already use Codex, 
 
 Choose V3 when you need scene adaptation, four creative controls, automatic layout selection, structured QA, bounded correction, or a consistent multi-image visual family.
 
-## 05. Which Edition Should I Choose?
+## 🧭 Which Edition Should I Choose?
 
 - Want the original fixed visual behavior? Choose Original Edition.
 - Want scene adaptation, controls, layout profiles, or series consistency? Choose V3 Adaptive Edition.
@@ -49,7 +37,7 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 - Want the smallest and most historically faithful package? Choose Original.
 - Want a more explicit contract around capabilities and verification? Choose V3.
 
-## 06. Original vs V3 Comparison
+## 🔍 Original vs V3 Comparison
 
 | Dimension | Original Edition | V3 Adaptive Edition |
 |---|---|---|
@@ -70,7 +58,7 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 | Best use cases | Stable, familiar, Codex-specific original behavior | Different scenes, explicit controls, layout adaptation, and series work |
 | Main trade-off | Less adaptive and not portable beyond Codex | More process and capability requirements; external Agent validation is pending |
 
-## 07. Scope / Limitations / Guarantees
+## 🎯 Scope, Limitations & Guarantees
 
 ### Original Edition
 
@@ -95,13 +83,13 @@ Best suited for photographs that benefit from explicit scene reasoning, identity
 
 Native Image Edit and Reference Generation must never be described as machine-verified Strict output.
 
-## 08. What Problem Does This Project Solve?
+## 💡 What Problem Does This Project Solve?
 
 Generic image prompts may redraw the source photograph, lose subject identity, invent unsupported facts, produce inconsistent abstraction levels, or render unreliable typography. A fixed layout may also fit one photograph but not another.
 
 Photo Abstract Editorial separates the factual photograph from the generated abstract motif, makes layout and creative decisions explicit, renders typography locally when Strict Fidelity is available, and adds a quality gate before delivery. Original keeps the first stable workflow available; V3 makes the adaptive decisions more explicit.
 
-## 09. Key Features
+## ✨ Key Features
 
 ### Original Edition
 
@@ -122,7 +110,7 @@ Photo Abstract Editorial separates the factual photograph from the generated abs
 - Optional Series Style Lock process.
 - Portable chroma cleanup, exact local typography, manifest, machine validator, and reproducible package.
 
-## 10. V3 Execution Modes
+## 🧩 V3 Execution Modes
 
 ### Strict Fidelity
 
@@ -136,7 +124,7 @@ Uses the source as the edit/reference image and follows the same art-direction a
 
 Uses the source as the sole factual reference for a model-dependent generation path. It is best effort and does not provide Strict Fidelity guarantees.
 
-## 11. Requirements
+## 📋 Requirements
 
 ### Original Edition
 
@@ -154,7 +142,7 @@ Visual understanding plus host image-editing/composition capability. Pixel-exact
 
 Visual understanding, image generation, and reference-image support. Results are model-dependent and best effort.
 
-## 12. Installation
+## 📦 Installation
 
 ### Original Edition
 
@@ -174,7 +162,7 @@ Use $skill-installer to install the root photo-abstract-editorial Skill from htt
 
 The package contains only V3 runtime files. README assets, evaluation files, tests, caches, and temporary outputs are not part of the V3 runtime package.
 
-## 13. Usage
+## 🚀 Usage
 
 ### Original Edition
 
@@ -204,7 +192,7 @@ Use $photo-abstract-editorial for this three-image series. Keep a restrained war
 
 Controls are natural-language workflow inputs in the current Skill contract; they are not claimed to be a numeric compositor API.
 
-## 14. Input → Output
+## 🖼️ Input → Output
 
 Ordinary source photograph
 
@@ -216,7 +204,7 @@ Ordinary source photograph
 
 → Photo Abstract Editorial result
 
-## 15. Real Demo Gallery
+## 🎞️ Real Demos
 
 All V3 images below are actual outputs from the RC evaluation corpus. They are Codex Strict Fidelity results with validator PASS; they are not promotional reconstructions.
 
@@ -238,7 +226,7 @@ All V3 images below are actual outputs from the RC evaluation corpus. They are C
 
 The full corpus and manifests are in [assets/evals/v3.0-rc1](assets/evals/v3.0-rc1) and [the RC evaluation report](docs/evals/v3.0-rc1-real-world-evaluation.md).
 
-## 16. Original vs V3 Same-Source Demo
+## ↔️ Original vs V3 Same-Source Demo
 
 This comparison uses the historical Original README source. The Original result is reused unchanged; the V3 result was generated later from the same source with the current V3 workflow.
 
@@ -248,7 +236,7 @@ This comparison uses the historical Original README source. The Original result 
 
 The Original keeps its fixed lower-left editorial behavior. V3 resolves the same long horizon as Wide Horizon and applies the current scene-aware composition. The comparison explains different decisions; it does not claim that one edition is universally better.
 
-## 17. V3 Control Showcase
+## 🎛️ V3 Control Showcase
 
 These three outputs use the same E03 Landscape source and the same Wide Horizon layout. The variants are real Codex orchestration-level control prompts, and all three passed the machine validator.
 
@@ -258,7 +246,7 @@ These three outputs use the same E03 Landscape source and the same Wide Horizon 
 
 The current compositor does not expose these values as a numeric command-line argument; the report records them as applied orchestration decisions rather than machine-enforced scores.
 
-## 18. V3 Series Showcase
+## 🗂️ V3 Series Showcase
 
 These three actual outputs were reviewed as a Codex-side series-style evaluation: same warm-ivory panel language, Bodoni typography family, whole-run kerning, restrained whitespace, and source-traceable mark vocabulary, while each image keeps its own scene logic.
 
@@ -270,7 +258,7 @@ These three actual outputs were reviewed as a Codex-side series-style evaluation
 
 This is a real visual PASS review of the documented Series Style Lock contract on Codex outputs. The current runtime does not expose a separate machine flag named Series Style Lock, and this does not constitute independent Agent validation.
 
-## 19. How It Works
+## ⚙️ How It Works
 
 ### Original Edition
 
@@ -280,11 +268,11 @@ Photograph → Codex visual inspection → text-free motif generation → histor
 
 Photograph → Scene Analysis → Creative Controls → Layout Selection → Art Direction → Generation/Edit → Quality Gate → one targeted correction when needed → Final Editorial.
 
-### V3 Strict Fidelity path
+### V3 Strict Fidelity Pipeline
 
 Transparent motif → portable chroma cleanup → deterministic composer → exact local typography → manifest → machine validator.
 
-## 20. Validation
+## ✅ Validation
 
 The numbers below are from the current public source and release preparation, not historical estimates.
 
@@ -300,7 +288,7 @@ The numbers below are from the current public source and release preparation, no
 
 Built to be checked, not just generated.
 
-## 21. Compatibility
+## 🌐 Compatibility
 
 ### Original Edition
 
@@ -314,7 +302,7 @@ Built to be checked, not just generated.
 
 DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 
-## 22. Releases
+## 📥 Releases
 
 ### Photo Abstract Editorial — Original Edition
 
@@ -335,7 +323,7 @@ DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 
 Formal v3.0.0 is intentionally not released.
 
-## 23. Switching / Upgrade Guide
+## 🔄 Switching / Upgrade Guide
 
 Stay on Original if you prefer the fixed historical visual behavior, use Codex, and want a smaller workflow.
 
@@ -343,7 +331,7 @@ Try V3 if you need scene adaptation, four creative controls, automatic layouts, 
 
 No Original user is required to migrate. The two packages can remain available side by side.
 
-## 24. FAQ
+## ❓ FAQ
 
 ### Can Original run outside Codex?
 
@@ -373,7 +361,7 @@ No. Additional Agent runtime validation is pending.
 
 It preserves a visual family such as panel language, palette, typography, whitespace, and mark vocabulary while re-analyzing each source instead of copying coordinates or motifs.
 
-## 25. Technical Details
+## 🛠️ Technical Details
 
 <details>
 <summary>V3 runtime structure</summary>
@@ -405,7 +393,7 @@ V3 manifests record source/output hashes, rendered photo-region hash, panel geom
 
 </details>
 
-## 26. Project Status
+## 📌 Project Status
 
 - Original Edition: supported, preserved, and available as the historical v1.0.0 release.
 - V3 Adaptive Edition: current public release candidate with Codex validation.
@@ -413,6 +401,6 @@ V3 manifests record source/output hashes, rendered photo-region hash, panel geom
 - Independent additional-Agent runtime validation: pending.
 - Formal v3.0.0: not released.
 
-## 27. License
+## ⚖️ License
 
 This project and its public releases are licensed under AGPL-3.0. See [LICENSE](LICENSE).
