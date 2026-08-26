@@ -19,6 +19,65 @@ from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageOps
 MANIFEST_VERSION = 1
 DEFAULT_PANEL_COLOR = "#E8E1D5"
 DEFAULT_TITLE_COLOR = "#34343A"
+DEFAULT_MOTIF_WIDTH_RATIO = 0.54
+DEFAULT_MOTIF_TOP_RATIO = 0.16
+DEFAULT_MARGIN_RATIO = 0.07
+DEFAULT_TITLE_OPTICAL_OFFSET_RATIO = 0.012
+DEFAULT_TITLE_BOTTOM_INSET_RATIO = 0.115
+
+
+LAYOUT_PROFILES: dict[str, dict[str, Any]] = {
+    "lower-editorial": {
+        "motif_width_ratio": 0.54,
+        "motif_top_ratio": 0.16,
+        "margin_ratio": 0.07,
+        "motif_alignment": "left",
+        "title_alignment": "left",
+        "title_optical_offset_ratio": 0.012,
+        "title_bottom_inset_ratio": 0.115,
+    },
+    "wide-horizon": {
+        "motif_width_ratio": 0.66,
+        "motif_top_ratio": 0.18,
+        "margin_ratio": 0.08,
+        "motif_alignment": "center",
+        "title_alignment": "left",
+        "title_optical_offset_ratio": 0.012,
+        "title_bottom_inset_ratio": 0.11,
+    },
+    "vertical-monument": {
+        "motif_width_ratio": 0.34,
+        "motif_top_ratio": 0.12,
+        "margin_ratio": 0.08,
+        "motif_alignment": "center",
+        "title_alignment": "center",
+        "title_optical_offset_ratio": 0.0,
+        "title_bottom_inset_ratio": 0.11,
+    },
+    "centered-archive": {
+        "motif_width_ratio": 0.44,
+        "motif_top_ratio": 0.16,
+        "margin_ratio": 0.08,
+        "motif_alignment": "center",
+        "title_alignment": "center",
+        "title_optical_offset_ratio": 0.0,
+        "title_bottom_inset_ratio": 0.12,
+    },
+    "sparse-object": {
+        "motif_width_ratio": 0.30,
+        "motif_top_ratio": 0.22,
+        "margin_ratio": 0.10,
+        "motif_alignment": "center",
+        "title_alignment": "left",
+        "title_optical_offset_ratio": 0.012,
+        "title_bottom_inset_ratio": 0.12,
+    },
+}
+
+LEGACY_LAYOUT_ALIASES = {
+    "lower-left": "lower-editorial",
+    "bottom-center": "centered-archive",
+}
 
 
 @dataclass(frozen=True)
@@ -30,18 +89,23 @@ class CompositionOptions:
     title_color: str = DEFAULT_TITLE_COLOR
     subtitle_color: str | None = None
     layout: str = "lower-left"
+    scene_profile: str | None = None
+    source_orientation: str | None = None
+    dominant_axis: str | None = None
+    subject_location: str | None = None
+    negative_space: str | None = None
     font_path: str | Path | None = None
     accent_font_path: str | Path | None = None
     subtitle_font_path: str | Path | None = None
     target_width: int | None = None
     panel_height: int | None = None
-    motif_width_ratio: float = 0.54
+    motif_width_ratio: float = DEFAULT_MOTIF_WIDTH_RATIO
     motif_center_x: float | None = None
-    motif_top_ratio: float = 0.16
-    margin_ratio: float = 0.07
+    motif_top_ratio: float = DEFAULT_MOTIF_TOP_RATIO
+    margin_ratio: float = DEFAULT_MARGIN_RATIO
     title_size_ratio: float = 0.041
-    title_optical_offset_ratio: float = 0.012
-    title_bottom_inset_ratio: float = 0.115
+    title_optical_offset_ratio: float = DEFAULT_TITLE_OPTICAL_OFFSET_RATIO
+    title_bottom_inset_ratio: float = DEFAULT_TITLE_BOTTOM_INSET_RATIO
     accent_scale: float = 0.70
 
 
@@ -70,6 +134,80 @@ def auto_panel_height(width: int, height: int) -> int:
     else:
         factor = 0.70
     return max(1, round(height * factor))
+
+
+def _normalise_fact(value: str | None) -> str:
+    if value is None:
+        return ""
+    return value.strip().lower().replace("_", "-").replace(" ", "-")
+
+
+def select_layout_profile(
+    scene_profile: str | None = None,
+    source_orientation: str | None = None,
+    dominant_axis: str | None = None,
+    subject_location: str | None = None,
+    negative_space: str | None = None,
+) -> str:
+    """Choose a stable layout profile from explicit scene facts."""
+    scene = _normalise_fact(scene_profile)
+    orientation = _normalise_fact(source_orientation)
+    axis = _normalise_fact(dominant_axis)
+    location = _normalise_fact(subject_location)
+    space = _normalise_fact(negative_space)
+
+    if scene == "architecture" and location in {"center", "centered", "central"}:
+        return "centered-archive"
+    if scene in {"pure-portrait", "environmental-portrait"}:
+        return "vertical-monument"
+    if scene in {"architecture", "tower", "vertical-subject"} and axis == "vertical":
+        return "vertical-monument"
+    if scene in {"still-life", "single-object", "minimal-object"} or space in {"generous", "large"}:
+        return "sparse-object"
+    if scene in {"landscape", "wide-horizon", "sea", "lake", "road"}:
+        return "wide-horizon"
+    if axis == "horizontal" or orientation == "landscape-wide":
+        return "wide-horizon"
+    return "lower-editorial"
+
+
+def resolve_layout_profile(
+    layout: str,
+    *,
+    scene_profile: str | None = None,
+    source_orientation: str | None = None,
+    dominant_axis: str | None = None,
+    subject_location: str | None = None,
+    negative_space: str | None = None,
+) -> tuple[str, dict[str, Any]]:
+    requested = _normalise_fact(layout)
+    if requested == "auto":
+        requested = select_layout_profile(
+            scene_profile=scene_profile,
+            source_orientation=source_orientation,
+            dominant_axis=dominant_axis,
+            subject_location=subject_location,
+            negative_space=negative_space,
+        )
+    canonical = LEGACY_LAYOUT_ALIASES.get(requested, requested)
+    if canonical not in LAYOUT_PROFILES:
+        accepted = sorted((*LAYOUT_PROFILES, *LEGACY_LAYOUT_ALIASES, "auto"))
+        raise ValueError(f"layout must be one of: {', '.join(accepted)}")
+    profile = dict(LAYOUT_PROFILES[canonical])
+    if requested == "bottom-center":
+        # Preserve the old bottom-center geometry while exposing its V3 profile identity.
+        profile.update(
+            {
+                "motif_width_ratio": DEFAULT_MOTIF_WIDTH_RATIO,
+                "motif_top_ratio": DEFAULT_MOTIF_TOP_RATIO,
+                "margin_ratio": DEFAULT_MARGIN_RATIO,
+                "motif_alignment": "center",
+                "title_alignment": "center",
+                "title_optical_offset_ratio": 0.0,
+                "title_bottom_inset_ratio": DEFAULT_TITLE_BOTTOM_INSET_RATIO,
+            }
+        )
+    return canonical, profile
 
 
 def parse_color(value: str, field: str) -> tuple[int, int, int]:
@@ -367,21 +505,52 @@ def compose(
     panel_rgb = parse_color(options.panel_color, "panel_color")
     title_rgb = parse_color(options.title_color, "title_color")
     subtitle_rgb = parse_color(options.subtitle_color or options.title_color, "subtitle_color")
-    if options.layout not in {"lower-left", "bottom-center"}:
-        raise ValueError("layout must be 'lower-left' or 'bottom-center'")
-    if not 0.15 <= options.motif_width_ratio <= 0.75:
+    layout_profile, layout_spec = resolve_layout_profile(
+        options.layout,
+        scene_profile=options.scene_profile,
+        source_orientation=options.source_orientation,
+        dominant_axis=options.dominant_axis,
+        subject_location=options.subject_location,
+        negative_space=options.negative_space,
+    )
+    motif_width_ratio = (
+        layout_spec["motif_width_ratio"]
+        if options.motif_width_ratio == DEFAULT_MOTIF_WIDTH_RATIO
+        else options.motif_width_ratio
+    )
+    motif_top_ratio = (
+        layout_spec["motif_top_ratio"]
+        if options.motif_top_ratio == DEFAULT_MOTIF_TOP_RATIO
+        else options.motif_top_ratio
+    )
+    margin_ratio = (
+        layout_spec["margin_ratio"]
+        if options.margin_ratio == DEFAULT_MARGIN_RATIO
+        else options.margin_ratio
+    )
+    title_optical_offset_ratio = (
+        layout_spec["title_optical_offset_ratio"]
+        if options.title_optical_offset_ratio == DEFAULT_TITLE_OPTICAL_OFFSET_RATIO
+        else options.title_optical_offset_ratio
+    )
+    title_bottom_inset_ratio = (
+        layout_spec["title_bottom_inset_ratio"]
+        if options.title_bottom_inset_ratio == DEFAULT_TITLE_BOTTOM_INSET_RATIO
+        else options.title_bottom_inset_ratio
+    )
+    if not 0.15 <= motif_width_ratio <= 0.75:
         raise ValueError("motif_width_ratio must be between 0.15 and 0.75")
     if options.motif_center_x is not None and not 0.0 <= options.motif_center_x <= 1.0:
         raise ValueError("motif_center_x must be between 0 and 1")
-    if not 0.0 <= options.motif_top_ratio <= 0.5:
+    if not 0.0 <= motif_top_ratio <= 0.5:
         raise ValueError("motif_top_ratio must be between 0 and 0.5")
-    if not 0.03 <= options.margin_ratio <= 0.15:
+    if not 0.03 <= margin_ratio <= 0.15:
         raise ValueError("margin_ratio must be between 0.03 and 0.15")
     if not 0.02 <= options.title_size_ratio <= 0.08:
         raise ValueError("title_size_ratio must be between 0.02 and 0.08")
-    if not 0.0 <= options.title_optical_offset_ratio <= 0.05:
+    if not 0.0 <= title_optical_offset_ratio <= 0.05:
         raise ValueError("title_optical_offset_ratio must be between 0 and 0.05")
-    if not 0.04 <= options.title_bottom_inset_ratio <= 0.2:
+    if not 0.04 <= title_bottom_inset_ratio <= 0.2:
         raise ValueError("title_bottom_inset_ratio must be between 0.04 and 0.2")
     if not 0.5 <= options.accent_scale <= 1.0:
         raise ValueError("accent_scale must be between 0.5 and 1.0")
@@ -405,7 +574,7 @@ def compose(
         raise ValueError("panel_height must be at least 64 pixels")
     canvas = Image.new("RGB", (source.width, source.height + panel_height), panel_rgb)
     canvas.paste(source, (0, 0))
-    margin = max(4, round(source.width * options.margin_ratio))
+    margin = max(4, round(source.width * margin_ratio))
 
     with Image.open(motif_path) as opened_motif:
         motif = opened_motif.convert("RGBA")
@@ -418,7 +587,7 @@ def compose(
         raise ValueError("motif image is fully transparent")
     motif = motif.crop(alpha_bbox)
 
-    motif_width = max(1, round(source.width * options.motif_width_ratio))
+    motif_width = max(1, round(source.width * motif_width_ratio))
     motif_height = max(1, round(motif.height * motif_width / motif.width))
     max_motif_height = max(1, round(panel_height * 0.38))
     if motif_height > max_motif_height:
@@ -433,12 +602,12 @@ def compose(
         raise ValueError("motif image is fully transparent after cleanup")
     if options.motif_center_x is not None:
         motif_x = round(source.width * options.motif_center_x - motif_width / 2)
-    elif options.layout == "lower-left":
+    elif layout_spec["motif_alignment"] == "left":
         motif_x = margin
     else:
         motif_x = round((source.width - motif_width) / 2)
     motif_x = min(max(0, motif_x), source.width - motif_width)
-    motif_y = source.height + round(panel_height * options.motif_top_ratio)
+    motif_y = source.height + round(panel_height * motif_top_ratio)
     motif_y = min(motif_y, source.height + panel_height - motif_height)
     canvas.paste(motif, (motif_x, motif_y), motif)
 
@@ -448,10 +617,14 @@ def compose(
     )
     subtitle_font_path = discover_font(options.subtitle_font_path, italic=True) if subtitle else None
     draw = ImageDraw.Draw(canvas)
-    title_optical_offset = max(0, round(source.width * options.title_optical_offset_ratio))
-    bottom_inset = max(4, round(source.width * options.title_bottom_inset_ratio))
-    title_x = margin + title_optical_offset if options.layout == "lower-left" else 0
-    max_text_width = source.width - title_x - margin if options.layout == "lower-left" else source.width - 2 * margin
+    title_optical_offset = max(0, round(source.width * title_optical_offset_ratio))
+    bottom_inset = max(4, round(source.width * title_bottom_inset_ratio))
+    title_x = margin + title_optical_offset if layout_spec["title_alignment"] == "left" else 0
+    max_text_width = (
+        source.width - title_x - margin
+        if layout_spec["title_alignment"] == "left"
+        else source.width - 2 * margin
+    )
     title_runs, title_width, title_top, title_bottom = fit_title_runs(
         main_font_path,
         accent_font_path,
@@ -478,7 +651,7 @@ def compose(
     text_y = canvas.height - bottom_inset - block_height
     if text_y < source.height:
         raise ValueError("typography does not fit inside the panel")
-    if options.layout == "bottom-center":
+    if layout_spec["title_alignment"] == "center":
         title_x = round((source.width - title_width) / 2)
         subtitle_x = round((source.width - subtitle_width) / 2)
     else:
@@ -496,6 +669,7 @@ def compose(
     atomic_save_image(canvas, output_path)
     manifest: dict[str, Any] = {
         "manifest_version": MANIFEST_VERSION,
+        "layout_profile": layout_profile,
         "source": {
             "file_name": source_path.name,
             "sha256": sha256_file(source_path),
@@ -532,7 +706,8 @@ def compose(
         },
         "layout_grid": {
             "inset": margin,
-            "inset_ratio": options.margin_ratio,
+            "inset_ratio": margin_ratio,
+            "profile": layout_profile,
         },
         "motif_region": {
             "x": motif_x,
@@ -544,6 +719,7 @@ def compose(
             "title": title,
             "subtitle": subtitle,
             "layout": options.layout,
+            "layout_profile": layout_profile,
             "font_file": main_font_path.name,
             "accent_font_file": accent_font_path.name if title_accent else None,
             "subtitle_font_file": subtitle_font_path.name if subtitle_font_path else None,
@@ -560,7 +736,7 @@ def compose(
             ],
             "kerning_mode": "whole-run",
             "title_anchor_x": title_x,
-            "title_optical_offset": title_optical_offset if options.layout == "lower-left" else 0,
+            "title_optical_offset": title_optical_offset if layout_spec["title_alignment"] == "left" else 0,
             "bottom_inset": bottom_inset,
             "subtitle_font_size": subtitle_font.size if subtitle_font else None,
             "title_region": {
@@ -604,7 +780,25 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--panel-color", default=DEFAULT_PANEL_COLOR)
     parser.add_argument("--title-color", default=DEFAULT_TITLE_COLOR)
     parser.add_argument("--subtitle-color")
-    parser.add_argument("--layout", choices=("lower-left", "bottom-center"), default="lower-left")
+    parser.add_argument(
+        "--layout",
+        choices=(
+            "lower-left",
+            "bottom-center",
+            "lower-editorial",
+            "wide-horizon",
+            "vertical-monument",
+            "centered-archive",
+            "sparse-object",
+            "auto",
+        ),
+        default="lower-left",
+    )
+    parser.add_argument("--scene-profile")
+    parser.add_argument("--source-orientation")
+    parser.add_argument("--dominant-axis")
+    parser.add_argument("--subject-location")
+    parser.add_argument("--negative-space")
     parser.add_argument("--font", dest="font_path", type=Path)
     parser.add_argument("--accent-font", dest="accent_font_path", type=Path)
     parser.add_argument("--subtitle-font", dest="subtitle_font_path", type=Path)
@@ -630,6 +824,11 @@ def main() -> int:
         title_color=args.title_color,
         subtitle_color=args.subtitle_color,
         layout=args.layout,
+        scene_profile=args.scene_profile,
+        source_orientation=args.source_orientation,
+        dominant_axis=args.dominant_axis,
+        subject_location=args.subject_location,
+        negative_space=args.negative_space,
         font_path=args.font_path,
         accent_font_path=args.accent_font_path,
         subtitle_font_path=args.subtitle_font_path,

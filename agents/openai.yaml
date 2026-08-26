@@ -1,4 +1,4 @@
 interface:
-  display_name: "Photo Abstract Editorial"
-  short_description: "Create verified photo-and-abstract editorials."
-  default_prompt: "Use $photo-abstract-editorial to turn this photograph into a verified photo-and-abstract editorial composition."
+  display_name: "Adaptive Photo Abstract Editorial"
+  short_description: "Create adaptive, QA-gated photo-and-abstract editorials."
+  default_prompt: "Use $photo-abstract-editorial to turn this photograph into a source-faithful adaptive photo-and-abstract editorial composition."

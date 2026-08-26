@@ -122,6 +122,7 @@ class ComposeEditorialTests(unittest.TestCase):
     def test_lower_left_grid_aligns_motif_and_title_anchors(self) -> None:
         """Catch the motif drifting back to an unrelated centered grid."""
         manifest = self.compose()
+        self.assertEqual(manifest["layout_profile"], "lower-editorial")
         self.assertEqual(manifest["layout_grid"]["inset"], 8)
         self.assertEqual(manifest["motif_region"]["x"], 8)
         self.assertEqual(manifest["typography"]["title_anchor_x"], 9)
@@ -134,6 +135,67 @@ class ComposeEditorialTests(unittest.TestCase):
         region = centered["motif_region"]
         self.assertNotEqual(region["x"], 8)
         self.assertAlmostEqual(region["x"] + region["width"] / 2, 90, delta=1)
+
+    def test_v3_layout_profiles_keep_motif_and_typography_inside_the_panel(self) -> None:
+        """Catch a new profile placing visual content outside the deterministic panel geometry."""
+        module = load_composer()
+        profiles = (
+            "lower-editorial",
+            "wide-horizon",
+            "vertical-monument",
+            "centered-archive",
+            "sparse-object",
+        )
+        for profile in profiles:
+            with self.subTest(profile=profile):
+                output = self.root / f"{profile}.png"
+                manifest = module.compose(
+                    self.source,
+                    self.motif,
+                    output,
+                    module.CompositionOptions(title="Measured Horizon", layout=profile),
+                )
+                panel_y = manifest["panel"]["y"]
+                panel_bottom = panel_y + manifest["panel"]["height"]
+                motif = manifest["motif_region"]
+                title = manifest["typography"]["title_region"]
+                self.assertEqual(manifest["layout_profile"], profile)
+                self.assertGreaterEqual(motif["x"], 0)
+                self.assertGreaterEqual(motif["y"], panel_y)
+                self.assertLessEqual(motif["x"] + motif["width"], manifest["output"]["size"][0])
+                self.assertLessEqual(motif["y"] + motif["height"], panel_bottom)
+                self.assertGreaterEqual(title["x"], 0)
+                self.assertGreaterEqual(title["y"], panel_y)
+                self.assertLessEqual(title["x"] + title["width"], manifest["output"]["size"][0])
+                self.assertLessEqual(title["y"] + title["height"], panel_bottom)
+
+    def test_layout_selection_is_deterministic_from_scene_facts(self) -> None:
+        """Catch random or subject-blind layout selection in the local routing helper."""
+        module = load_composer()
+        cases = [
+            ({"scene_profile": "landscape", "dominant_axis": "horizontal"}, "wide-horizon"),
+            ({"scene_profile": "pure-portrait", "dominant_axis": "vertical"}, "vertical-monument"),
+            ({"scene_profile": "architecture", "subject_location": "center"}, "centered-archive"),
+            ({"scene_profile": "still-life", "negative_space": "generous"}, "sparse-object"),
+            ({"scene_profile": "street-crowd", "dominant_axis": "mixed"}, "lower-editorial"),
+        ]
+        for facts, expected in cases:
+            with self.subTest(facts=facts):
+                self.assertEqual(module.select_layout_profile(**facts), expected)
+
+    def test_legacy_layout_names_remain_supported(self) -> None:
+        """Catch a V3 profile migration that breaks existing lower-left and bottom-center callers."""
+        module = load_composer()
+        for layout in ("lower-left", "bottom-center"):
+            with self.subTest(layout=layout):
+                output = self.root / f"legacy-{layout}.png"
+                manifest = module.compose(
+                    self.source,
+                    self.motif,
+                    output,
+                    module.CompositionOptions(title="Measured Horizon", layout=layout),
+                )
+                self.assertIn(manifest["layout_profile"], {"lower-editorial", "centered-archive"})
 
     def test_isolated_alpha_components_are_removed_before_compositing(self) -> None:
         """Catch chroma-key specks surviving as cyan or green dots on the panel."""

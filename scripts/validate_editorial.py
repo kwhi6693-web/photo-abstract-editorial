@@ -13,6 +13,13 @@ from PIL import Image, ImageColor, ImageOps
 
 
 EXPECTED_MANIFEST_VERSION = 1
+KNOWN_LAYOUT_PROFILES = {
+    "lower-editorial",
+    "wide-horizon",
+    "vertical-monument",
+    "centered-archive",
+    "sparse-object",
+}
 
 
 def sha256_file(path: Path) -> str:
@@ -53,6 +60,29 @@ def _expected_source_image(source_path: Path, manifest: dict[str, Any]) -> Image
     return source
 
 
+def _region_inside_panel(
+    region: Any,
+    panel_y: int | None,
+    panel_bottom: int | None,
+    output_width: int,
+    output_height: int,
+) -> bool:
+    if not isinstance(region, dict) or not isinstance(panel_y, int) or not isinstance(panel_bottom, int):
+        return False
+    values = (region.get("x"), region.get("y"), region.get("width"), region.get("height"))
+    if not all(isinstance(value, int) for value in values):
+        return False
+    x, y, width, height = values
+    return (
+        x >= 0
+        and y >= panel_y
+        and width > 0
+        and height > 0
+        and x + width <= output_width
+        and y + height <= min(panel_bottom, output_height)
+    )
+
+
 def validate(
     source_path: str | Path,
     output_path: str | Path,
@@ -78,6 +108,8 @@ def validate(
     record("manifest_version", manifest.get("manifest_version") == EXPECTED_MANIFEST_VERSION)
     record("source_sha256", manifest.get("source", {}).get("sha256") == sha256_file(source_path))
     record("output_sha256", manifest.get("output", {}).get("sha256") == sha256_file(output_path))
+    declared_layout = manifest.get("layout_profile") or manifest.get("layout_grid", {}).get("profile")
+    record("layout_profile", declared_layout is None or declared_layout in KNOWN_LAYOUT_PROFILES)
 
     expected_source = _expected_source_image(source_path, manifest)
     with Image.open(output_path) as opened:
@@ -132,6 +164,43 @@ def validate(
         record("panel_corner_color", panel_color is not None and corner_pixels == [panel_color] * 4)
     else:
         record("panel_corner_color", False)
+
+    panel_bottom = panel_y + panel_height if isinstance(panel_y, int) and isinstance(panel_height, int) else None
+    record(
+        "motif_region_geometry",
+        "motif_region" not in manifest
+        or _region_inside_panel(
+            manifest.get("motif_region"),
+            panel_y if isinstance(panel_y, int) else None,
+            panel_bottom,
+            output.width,
+            output.height,
+        ),
+    )
+    typography = manifest.get("typography", {})
+    record(
+        "title_region_geometry",
+        "title_region" not in typography
+        or _region_inside_panel(
+            typography.get("title_region"),
+            panel_y if isinstance(panel_y, int) else None,
+            panel_bottom,
+            output.width,
+            output.height,
+        ),
+    )
+    subtitle_region = typography.get("subtitle_region")
+    record(
+        "subtitle_region_geometry",
+        subtitle_region is None
+        or _region_inside_panel(
+            subtitle_region,
+            panel_y if isinstance(panel_y, int) else None,
+            panel_bottom,
+            output.width,
+            output.height,
+        ),
+    )
 
     return {
         "ok": not errors,

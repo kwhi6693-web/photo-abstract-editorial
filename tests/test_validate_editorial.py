@@ -112,6 +112,18 @@ class ValidateEditorialTests(unittest.TestCase):
         self.assertFalse(verdict["ok"])
         self.assertIn("panel_corner_color", verdict["errors"])
 
+    def test_declared_motif_outside_panel_is_rejected(self) -> None:
+        """Catch a manifest that claims a layout region outside the deterministic panel."""
+        validator = load_validator()
+        payload = json.loads(self.manifest_path.read_text(encoding="utf-8"))
+        payload["motif_region"]["y"] = payload["panel"]["y"] - 1
+        self.manifest_path.write_text(json.dumps(payload), encoding="utf-8")
+
+        verdict = validator.validate(self.source, self.output, self.manifest_path)
+
+        self.assertFalse(verdict["ok"])
+        self.assertIn("motif_region_geometry", verdict["errors"])
+
     def test_cli_exit_code_and_json_match_verdict(self) -> None:
         """Catch a CLI that prints success but returns the wrong process status."""
         completed = subprocess.run(

@@ -20,8 +20,14 @@ RUNTIME_FILES = (
     "assets/examples/result-horizon.png",
     "assets/examples/result-horizon.png.manifest.json",
     "references/art-direction.md",
+    "references/control-system.md",
     "references/example-pair.md",
+    "references/layout-profiles.md",
+    "references/quality-check.md",
+    "references/scene-profiles.md",
+    "references/series-style.md",
     "scripts/compose_editorial.py",
+    "scripts/remove_chroma_key.py",
     "scripts/validate_editorial.py",
 )
 TEXT_RUNTIME_SUFFIXES = {".json", ".md", ".py", ".yaml", ".yml"}
