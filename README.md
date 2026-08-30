@@ -20,7 +20,7 @@ The source is shown unchanged. The result is the existing V3 same-source artifac
 | ![Same source photograph](assets/readme/comparisons/original-horizon/source.png) | ![Actual V3 output from the same source](assets/readme/comparisons/original-horizon/v3-result.png) |
 
 <a id="navigation"></a>
-**Jump to:** [Quick Start](#quick-start) · [Gallery](#gallery) · [Choose an Edition](#choose-an-edition) · [Compatibility](#compatibility) · [Validation](#validation) · [Releases](#releases)
+**Jump to:** [Quick Start](#quick-start) · [Gallery](#gallery) · [Choose an Edition](#choose-an-edition) · [Compatibility](#compatibility) · [Validation](#validation) · [Releases](#releases) · [Environment Contract](#environment-contract)
 
 <a id="quick-start"></a>
 ## ⚡ 30-Second Quick Start
@@ -215,11 +215,11 @@ Uses the source as the sole factual reference for a model-dependent generation p
 
 ### Original Edition
 
-**Codex only.** The Original workflow requires Codex visual inspection, the built-in image-generation path, the Codex workspace/runtime helper used by the historical workflow, Python 3.10+, Pillow, a usable serif font, one photograph, and a transparent motif.
+**Codex only.** The Original workflow requires Codex visual inspection, the built-in image-generation path, the Codex workspace/runtime helper used by the historical workflow, Python 3.10–3.13 (CI-tested), Pillow, a usable serif font, one photograph, and a transparent motif.
 
 ### V3 Strict Fidelity
 
-Visual understanding, image generation, local filesystem access, Python 3.10+, Pillow-compatible processing, a usable serif font, one photograph, and a transparent motif.
+Visual understanding, image generation, local filesystem access, Python 3.10–3.13 (CI-tested), Pillow-compatible processing, a usable serif font, one photograph, and a transparent motif.
 
 ### V3 Native Image Edit
 
@@ -239,15 +239,30 @@ The test runner is a development dependency and is not included in either runtim
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements-dev.txt
+python scripts/doctor.py --development
 pytest
+python scripts/validate_editorial.py --source assets/examples/source-horizon.png --output assets/examples/result-horizon.png --manifest assets/examples/result-horizon.png.manifest.json
 ~~~
 
 ~~~bash
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
+python scripts/doctor.py --development
 pytest
+python scripts/validate_editorial.py --source assets/examples/source-horizon.png --output assets/examples/result-horizon.png --manifest assets/examples/result-horizon.png.manifest.json
 ~~~
+
+<a id="environment-contract"></a>
+## 🩺 Environment Contract
+
+The local compositor and validator use `Pillow` as the only Python runtime dependency. Install it from [requirements.txt](requirements.txt) when running repository scripts; [requirements-dev.txt](requirements-dev.txt) reuses that runtime manifest and adds the development-only `pytest` runner.
+
+The read-only preflight is `python scripts/doctor.py`. It checks the tested Python versions (3.10–3.13), Pillow and required imports, temporary storage, RGB/RGBA PNG round-trips, project files, the validator, serif-font discovery, and formal runtime archives. `python scripts/doctor.py --development --strict-packages` is the full local development check.
+
+Visual understanding, image generation, native image editing, and filesystem access are host capabilities, not pip dependencies. The CI contract covers Ubuntu/Linux on Python 3.10–3.13, Windows on Python 3.12, and macOS on Python 3.13. Runtime release archives retain their existing Skill file contract and exclude tests, caches, and development-only files.
+
+The dependency/import check is `python tools/check_dependency_contract.py`; the package and repository hygiene gates are `python tools/check_package_parity.py` and `python tools/check_repository_hygiene.py`.
 
 <a id="installation"></a>
 ## 📦 Installation

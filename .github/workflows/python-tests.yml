@@ -1,25 +1,38 @@
-name: Python tests
+name: Environment contract
 
 on:
   pull_request:
   push:
     branches:
       - main
+  schedule:
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  pytest:
-    name: pytest (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+  environment-contract:
+    name: environment-contract (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
-        python-version:
-          - "3.10"
-          - "3.12"
+        include:
+          - os: ubuntu-latest
+            python-version: "3.10"
+          - os: ubuntu-latest
+            python-version: "3.11"
+          - os: ubuntu-latest
+            python-version: "3.12"
+          - os: ubuntu-latest
+            python-version: "3.13"
+          - os: windows-latest
+            python-version: "3.12"
+          - os: macos-latest
+            python-version: "3.13"
 
     steps:
       - name: Check out repository
@@ -30,12 +43,162 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-          cache-dependency-path: requirements-dev.txt
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
 
-      - name: Install development dependencies
+      - name: Install runtime dependencies in a fresh environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run read-only environment doctor
+        run: python scripts/doctor.py --strict-packages
+
+      - name: Check declared imports
+        run: python tools/check_dependency_contract.py
+
+  runtime-smoke:
+    name: runtime-smoke (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python-version: "3.10"
+          - os: ubuntu-latest
+            python-version: "3.11"
+          - os: ubuntu-latest
+            python-version: "3.12"
+          - os: ubuntu-latest
+            python-version: "3.13"
+          - os: windows-latest
+            python-version: "3.12"
+          - os: macos-latest
+            python-version: "3.13"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install runtime dependencies in a fresh environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Run runtime import and PNG smoke test
+        run: >-
+          python -c "from PIL import Image; from scripts import compose_editorial, validate_editorial; import tempfile; from pathlib import Path;
+          temporary = tempfile.TemporaryDirectory(); path = Path(temporary.name) / 'runtime-smoke.png';
+          Image.new('RGBA', (3, 3), (10, 20, 30, 127)).save(path, format='PNG'); reopened = Image.open(path); reopened.load();
+          assert reopened.mode == 'RGBA' and reopened.getpixel((0, 0))[3] == 127; reopened.close(); temporary.cleanup()"
+
+  pytest:
+    name: pytest + validator (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python-version: "3.10"
+          - os: ubuntu-latest
+            python-version: "3.11"
+          - os: ubuntu-latest
+            python-version: "3.12"
+          - os: ubuntu-latest
+            python-version: "3.13"
+          - os: windows-latest
+            python-version: "3.12"
+          - os: macos-latest
+            python-version: "3.13"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install development dependencies in a fresh environment
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
 
+      - name: Run development environment doctor
+        run: python scripts/doctor.py --development --strict-packages
+
       - name: Run pytest
-        run: pytest
+        run: pytest -q
+
+      - name: Run validator
+        run: >-
+          python scripts/validate_editorial.py
+          --source assets/examples/source-horizon.png
+          --output assets/examples/result-horizon.png
+          --manifest assets/examples/result-horizon.png.manifest.json
+
+  package-parity:
+    name: package-parity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Rebuild current V3 archive
+        run: python tools/build_skill_package.py
+
+      - name: Confirm the build is deterministic and tracked
+        run: git diff --exit-code -- dist/photo-abstract-editorial-skill.zip
+
+      - name: Validate source and formal runtime archives
+        run: python tools/check_package_parity.py
+
+  security-repository-hygiene:
+    name: security/repository-hygiene
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Check tracked repository hygiene
+        run: python tools/check_repository_hygiene.py

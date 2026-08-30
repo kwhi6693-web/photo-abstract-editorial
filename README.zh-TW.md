@@ -20,7 +20,7 @@ Photo Abstract Editorial 保留源照片的事實內容，將源圖關係轉化�
 | ![同一源照片](assets/readme/comparisons/original-horizon/source.png) | ![同源實際 V3 成片](assets/readme/comparisons/original-horizon/v3-result.png) |
 
 <a id="navigation"></a>
-**快速跳轉：** [快速開始](#quick-start) · [作品畫廊](#gallery) · [選擇版本](#choose-an-edition) · [相容性](#compatibility) · [驗證](#validation) · [發布版本](#releases)
+**快速跳轉：** [快速開始](#quick-start) · [作品畫廊](#gallery) · [選擇版本](#choose-an-edition) · [相容性](#compatibility) · [驗證](#validation) · [發布版本](#releases) · [環境合約](#environment-contract)
 
 <a id="quick-start"></a>
 ## ⚡ 30 秒快速開始
@@ -215,11 +215,11 @@ Native Image Edit 與 Reference Generation 不得被描述為機器驗證的 Str
 
 ### Original Edition
 
-**僅 Codex。** Original 工作流需要 Codex 視覺檢查、內建圖像生成路徑、歷史工作流使用的 Codex 工作區/執行環境輔助工具、Python 3.10+、Pillow、可用襯線字型、一張照片與透明母題。
+**僅 Codex。** Original 工作流需要 Codex 視覺檢查、內建圖像生成路徑、歷史工作流使用的 Codex 工作區/執行環境輔助工具、Python 3.10–3.13（CI 已驗證）、Pillow、可用襯線字型、一張照片與透明母題。
 
 ### V3 Strict Fidelity
 
-需要視覺理解、圖像生成、本地檔案系統存取、Python 3.10+、相容 Pillow 的處理能力、可用襯線字型、一張照片與透明母題。
+需要視覺理解、圖像生成、本地檔案系統存取、Python 3.10–3.13（CI 已驗證）、相容 Pillow 的處理能力、可用襯線字型、一張照片與透明母題。
 
 ### V3 Native Image Edit
 
@@ -239,15 +239,30 @@ Native Image Edit 與 Reference Generation 不得被描述為機器驗證的 Str
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements-dev.txt
+python scripts/doctor.py --development
 pytest
+python scripts/validate_editorial.py --source assets/examples/source-horizon.png --output assets/examples/result-horizon.png --manifest assets/examples/result-horizon.png.manifest.json
 ~~~
 
 ~~~bash
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
+python scripts/doctor.py --development
 pytest
+python scripts/validate_editorial.py --source assets/examples/source-horizon.png --output assets/examples/result-horizon.png --manifest assets/examples/result-horizon.png.manifest.json
 ~~~
+
+<a id="environment-contract"></a>
+## 🩺 環境合約
+
+本地合成器與驗證器只使用 `Pillow` 這一項 Python 執行階段依賴。從儲存庫執行腳本時，請依 [requirements.txt](requirements.txt) 安裝；[requirements-dev.txt](requirements-dev.txt) 會重用執行階段清單，並額外加入僅供開發使用的 `pytest` 測試執行器。
+
+唯讀預檢入口是 `python scripts/doctor.py`。它會檢查已驗證的 Python 版本（3.10–3.13）、Pillow 與必要匯入、暫存目錄、RGB/RGBA PNG 往返、專案檔案、驗證器、襯線字型發現與正式執行階段安裝包。`python scripts/doctor.py --development --strict-packages` 是完整的本地開發檢查。
+
+視覺理解、圖像生成、原生圖像編輯與檔案系統存取屬於宿主能力，不是 pip 依賴。CI 覆蓋 Ubuntu/Linux 的 Python 3.10–3.13、Windows 的 Python 3.12，以及 macOS 的 Python 3.13。執行階段發布包繼續保持現有 Skill 檔案合約，並排除測試、快取與僅供開發使用的檔案。
+
+依賴/匯入檢查命令是 `python tools/check_dependency_contract.py`；安裝包與儲存庫衛生檢查命令分別是 `python tools/check_package_parity.py` 與 `python tools/check_repository_hygiene.py`。
 
 <a id="installation"></a>
 ## 📦 安裝方法

@@ -1,4 +1,4 @@
 # Install this dependency set for repository development and tests.
 # Runtime release archives exclude development-only files.
-Pillow==12.3.0
+-r requirements.txt
 pytest==9.1.1
