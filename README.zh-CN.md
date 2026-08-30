@@ -9,7 +9,7 @@
 Photo Abstract Editorial 保留源照片的事实内容，将源图关系转化为克制的抽象面板，并在已验证路径支持时使用本地排版生成标题。
 
 <a id="before-after"></a>
-## Before → After
+## 转换前 → 转换后
 
 **同一源图 · 实际 V3 成片 · Strict Fidelity / 验证器 PASS**
 
