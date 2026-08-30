@@ -1,41 +1,112 @@
 # 🎨 Photo Abstract Editorial
 
-Turn one photograph into an editorial composition built from the original photo, an abstract memory panel, and a poetic English title.
+A source-faithful Agent Skill that turns photographs into editorial artworks with adaptive layouts, controlled abstraction, and a deterministic composition path.
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#-compatibility) [![License](https://img.shields.io/badge/License-AGPL--3.0-4c4c4c?style=flat-square)](LICENSE)
+[![Original](https://img.shields.io/badge/Original-Codex%20only-7a5c4f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) [![V3 Adaptive](https://img.shields.io/badge/V3%20Adaptive-v3.0.0-c45a2f?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) [![Agent Skill](https://img.shields.io/badge/Type-Agent%20Skill-3f4856?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial) [![Codex](https://img.shields.io/badge/Validated-Codex-6e5a76?style=flat-square)](https://github.com/kwhi6693-web/photo-abstract-editorial#compatibility)
 
-This project keeps the source photograph factual, uses a restrained abstraction panel to carry visual memory, and renders the editorial title locally when Strict Fidelity is available.
+Photo Abstract Editorial keeps the source photograph factual, turns source-derived relationships into a restrained abstraction panel, and renders the editorial title locally where the verified path supports it.
 
-**One project, two editions. You choose.**
+<a id="before-after"></a>
+## Before → After
 
+**Same source · Actual V3 output · Strict Fidelity / validator PASS**
+
+The source is shown unchanged. The result is the existing V3 same-source artifact in this repository; its [manifest](assets/readme/comparisons/original-horizon/v3-result.png.manifest.json) records a pixel-exact photographic region, and the published same-source check reports validator PASS.
+
+| Before | After |
+|---|---|
+| ![Same source photograph](assets/readme/comparisons/original-horizon/source.png) | ![Actual V3 output from the same source](assets/readme/comparisons/original-horizon/v3-result.png) |
+
+<a id="navigation"></a>
+**Jump to:** [Quick Start](#quick-start) · [Gallery](#gallery) · [Choose an Edition](#choose-an-edition) · [Compatibility](#compatibility) · [Validation](#validation) · [Releases](#releases)
+
+<a id="quick-start"></a>
+## ⚡ 30-Second Quick Start
+
+V3 Adaptive is the recommended starting point for most new users.
+
+### Install
+
+Download the [v3.0.0 release ZIP](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip) and install the included Skill, or use the existing installer method:
+
+~~~text
+Use $skill-installer to install the root photo-abstract-editorial Skill from https://github.com/kwhi6693-web/photo-abstract-editorial.
+~~~
+
+### Run
+
+~~~text
+Use $photo-abstract-editorial to create an adaptive, source-faithful photo-and-abstract editorial from this image.
+~~~
+
+### Optional Controls
+
+~~~text
+Use $photo-abstract-editorial. Set Abstraction to 60, Creative Freedom to 45, Identity Preservation to 80, and Spatial Fidelity to 70.
+~~~
+
+<a id="gallery"></a>
+## 🖼️ Gallery
+
+These five images are actual V3 outputs from the RC evaluation corpus. They are Codex Strict Fidelity results with validator PASS, not promotional reconstructions.
+
+| Pure Portrait | Landscape | Architecture |
+|---|---|---|
+| ![V3 Pure Portrait result](assets/readme/v3/pure-portrait.png) | ![V3 Landscape result](assets/readme/v3/landscape.png) | ![V3 Architecture result](assets/readme/v3/architecture.png) |
+
+| Still Life | Minimal / Light |
+|---|---|
+| ![V3 Still Life result](assets/readme/v3/still-life.png) | ![V3 Minimal Light result](assets/readme/v3/minimal-light.png) |
+
+| Scene | Layout | Validation |
+|---|---|---|
+| Pure Portrait | Vertical Monument | Strict Fidelity · validator PASS |
+| Landscape | Wide Horizon | Strict Fidelity · validator PASS |
+| Architecture | Centered Archive | Strict Fidelity · validator PASS |
+| Still Life | Sparse Object | Strict Fidelity · validator PASS |
+| Minimal / Light | Sparse Object | Strict Fidelity · validator PASS |
+
+The full corpus and manifests are in [assets/evals/v3.0-rc1](assets/evals/v3.0-rc1) and [the RC evaluation report](docs/evals/v3.0-rc1-real-world-evaluation.md).
+
+If this workflow is useful to you, a ⭐ helps more people discover the project.
+
+<a id="why"></a>
+## Why Photo Abstract Editorial?
+
+- Preserves the source photograph in the verified Strict Fidelity path.
+- Chooses a scene-aware layout instead of forcing every source into one frame.
+- Keeps abstraction controlled and traceable to the photograph.
+- Renders exact local typography under Strict Fidelity.
+- Uses structured QA before delivery.
+- Provides a reproducible deterministic path where the required capabilities are available.
+
+Generic image prompts may redraw the source photograph, lose subject identity, invent unsupported facts, produce inconsistent abstraction levels, or render unreliable typography. This project separates the factual photograph from the generated abstract motif, makes layout and creative decisions explicit, and adds a quality gate before delivery.
+
+<a id="choose-an-edition"></a>
 ## 🧭 Choose Your Edition
 
-| | Original Edition | V3 Adaptive Edition |
+**Recommended for most new users: V3 Adaptive.**
+
+| | Original | V3 Adaptive |
 |---|---|---|
-| Positioning | The preserved original Codex workflow | The adaptive, capability-based V3 workflow |
-| Runtime | CODEX ONLY | Codex and the tested DeepSeek Harness capability path validated; designed for suitable image-capable Agents/Harnesses |
-| Visual behavior | Fixed and restrained | Scene-aware, controllable, and layout-aware |
-| Download | [Original release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0) | [V3 Adaptive release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0) |
+| Runtime | Codex only | Capability-based; validated on Codex and the tested DeepSeek Harness path |
+| Layout | Fixed | Adaptive |
+| Controls | Manual | Four creative controls |
+| QA | Original validator | Structured V3 QA |
+| Best for | Historical Codex workflow | Current recommended workflow |
 
-### Original Edition
+Original remains supported for users who want the preserved fixed Codex workflow. V3 is the current formal stable release for scene adaptation, explicit controls, adaptive layouts, structured QA, and series work. The two editions can remain available side by side.
 
-Choose Original when you want the historical fixed workflow, already use Codex, and prefer the simpler original art-direction contract.
+- [Original v1.0.0 release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v1.0.0)
+- [V3 Adaptive v3.0.0 release](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/tag/v3.0.0)
 
-### V3 Adaptive Edition
-
-Choose V3 when you need scene adaptation, four creative controls, automatic layout selection, structured QA, bounded correction, or a consistent multi-image visual family.
-
-## 🧭 Which Edition Should I Choose?
-
-- Want the original fixed visual behavior? Choose Original Edition.
-- Want scene adaptation, controls, layout profiles, or series consistency? Choose V3 Adaptive Edition.
-- Using a non-Codex Agent? Original is not supported. V3 may be suitable when the host provides the required image and local-processing capabilities. The tested DeepSeek Harness capability path is independently verified; this does not imply that every Agent exposes the same native tools.
-- Want the smallest and most historically faithful package? Choose Original.
-- Want a more explicit contract around capabilities and verification? Choose V3.
-
+<a id="original-vs-v3"></a>
 ## 🔍 Original vs V3 Comparison
+
+<details>
+<summary>Open the complete edition comparison</summary>
 
 | Dimension | Original Edition | V3 Adaptive Edition |
 |---|---|---|
@@ -56,7 +127,13 @@ Choose V3 when you need scene adaptation, four creative controls, automatic layo
 | Best use cases | Stable, familiar, Codex-specific original behavior | Different scenes, explicit controls, layout adaptation, and series work |
 | Main trade-off | Less adaptive and not portable beyond Codex | More process and capability requirements; native tools still vary by host |
 
+</details>
+
+<a id="scope"></a>
 ## 🎯 Scope, Limitations & Guarantees
+
+<details>
+<summary>Open scope and guarantee details</summary>
 
 ### Original Edition
 
@@ -81,13 +158,13 @@ Best suited for photographs that benefit from explicit scene reasoning, identity
 
 Native Image Edit and Reference Generation must never be described as machine-verified Strict output.
 
-## 💡 What Problem Does This Project Solve?
+</details>
 
-Generic image prompts may redraw the source photograph, lose subject identity, invent unsupported facts, produce inconsistent abstraction levels, or render unreliable typography. A fixed layout may also fit one photograph but not another.
-
-Photo Abstract Editorial separates the factual photograph from the generated abstract motif, makes layout and creative decisions explicit, renders typography locally when Strict Fidelity is available, and adds a quality gate before delivery. Original keeps the first stable workflow available; V3 makes the adaptive decisions more explicit.
-
+<a id="features"></a>
 ## ✨ Key Features
+
+<details>
+<summary>Open the feature-level contract</summary>
 
 ### Original Edition
 
@@ -108,7 +185,13 @@ Photo Abstract Editorial separates the factual photograph from the generated abs
 - Optional Series Style Lock process.
 - Portable chroma cleanup, exact local typography, manifest, machine validator, and reproducible package.
 
+</details>
+
+<a id="execution-modes"></a>
 ## 🧩 V3 Execution Modes
+
+<details>
+<summary>Open the mode boundaries</summary>
 
 ### Strict Fidelity
 
@@ -122,7 +205,13 @@ Uses the source as the edit/reference image and follows the same art-direction a
 
 Uses the source as the sole factual reference for a model-dependent generation path. It is best effort and does not provide Strict Fidelity guarantees.
 
+</details>
+
+<a id="requirements"></a>
 ## 📋 Requirements
+
+<details>
+<summary>Open runtime requirements</summary>
 
 ### Original Edition
 
@@ -140,7 +229,13 @@ Visual understanding plus host image-editing/composition capability. Pixel-exact
 
 Visual understanding, image generation, and reference-image support. Results are model-dependent and best effort.
 
+</details>
+
+<a id="installation"></a>
 ## 📦 Installation
+
+<details>
+<summary>Open installation details for both editions</summary>
 
 ### Original Edition
 
@@ -150,17 +245,17 @@ The repository copy is [dist/photo-abstract-editorial-original.zip](dist/photo-a
 
 ### V3 Adaptive Edition
 
-Download [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip), or ask Codex to install the root Skill from the public repository:
-
-The repository copy is [dist/photo-abstract-editorial-skill.zip](dist/photo-abstract-editorial-skill.zip).
-
-~~~text
-Use $skill-installer to install the root photo-abstract-editorial Skill from https://github.com/kwhi6693-web/photo-abstract-editorial.
-~~~
+Download [photo-abstract-editorial-skill.zip](https://github.com/kwhi6693-web/photo-abstract-editorial/releases/download/v3.0.0/photo-abstract-editorial-skill.zip), or ask Codex to install the root Skill from the public repository. The repository copy is [dist/photo-abstract-editorial-skill.zip](dist/photo-abstract-editorial-skill.zip).
 
 The package contains only V3 runtime files. README assets, evaluation files, tests, caches, and temporary outputs are not part of the V3 runtime package.
 
+</details>
+
+<a id="usage"></a>
 ## 🚀 Usage
+
+<details>
+<summary>Open additional usage patterns</summary>
 
 ### Original Edition
 
@@ -172,15 +267,7 @@ The Original prompt invokes the historical Codex-specific workflow.
 
 ### V3 Adaptive Edition — Default
 
-~~~text
-Use $photo-abstract-editorial to create an adaptive, source-faithful photo-and-abstract editorial from this image.
-~~~
-
-### V3 Adaptive Edition — Controlled
-
-~~~text
-Use $photo-abstract-editorial. Set Abstraction to 60, Creative Freedom to 45, Identity Preservation to 80, and Spatial Fidelity to 70. Resolve the scene and layout from the photograph, then run the applicable QA.
-~~~
+The default V3 prompt is in [30-Second Quick Start](#quick-start).
 
 ### V3 Adaptive Edition — Series
 
@@ -190,6 +277,9 @@ Use $photo-abstract-editorial for this three-image series. Keep a restrained war
 
 Controls are natural-language workflow inputs in the current Skill contract; they are not claimed to be a numeric compositor API.
 
+</details>
+
+<a id="input-output"></a>
 ## 🖼️ Input → Output
 
 Ordinary source photograph
@@ -202,29 +292,8 @@ Ordinary source photograph
 
 → Photo Abstract Editorial result
 
-## 🎞️ Real Demos
-
-All V3 images below are actual outputs from the RC evaluation corpus. They are Codex Strict Fidelity results with validator PASS; they are not promotional reconstructions.
-
-| Scene | Edition | Layout | Validation |
-|---|---|---|---|
-| Pure Portrait | V3 Adaptive | Vertical Monument | Strict PASS |
-| Landscape | V3 Adaptive | Wide Horizon | Strict PASS |
-| Architecture | V3 Adaptive | Centered Archive | Strict PASS |
-| Still Life | V3 Adaptive | Sparse Object | Strict PASS |
-| Minimal / Light | V3 Adaptive | Sparse Object | Strict PASS |
-
-| Pure Portrait | Landscape | Architecture |
-|---|---|---|
-| ![V3 Pure Portrait result](assets/readme/v3/pure-portrait.png) | ![V3 Landscape result](assets/readme/v3/landscape.png) | ![V3 Architecture result](assets/readme/v3/architecture.png) |
-
-| Still Life | Minimal / Light |
-|---|---|
-| ![V3 Still Life result](assets/readme/v3/still-life.png) | ![V3 Minimal Light result](assets/readme/v3/minimal-light.png) |
-
-The full corpus and manifests are in [assets/evals/v3.0-rc1](assets/evals/v3.0-rc1) and [the RC evaluation report](docs/evals/v3.0-rc1-real-world-evaluation.md).
-
-## ↔️ Original vs V3 Same-Source Demo
+<a id="same-source-showcase"></a>
+## ↔️ Same-Source Original vs V3
 
 This comparison uses the historical Original README source. The Original result is reused unchanged; the V3 result was generated later from the same source with the current V3 workflow.
 
@@ -234,6 +303,7 @@ This comparison uses the historical Original README source. The Original result 
 
 The Original keeps its fixed lower-left editorial behavior. V3 resolves the same long horizon as Wide Horizon and applies the current scene-aware composition. The comparison explains different decisions; it does not claim that one edition is universally better.
 
+<a id="control-showcase"></a>
 ## 🎛️ V3 Control Showcase
 
 These three outputs use the same E03 Landscape source and the same Wide Horizon layout. The variants are real Codex orchestration-level control prompts, and all three passed the machine validator.
@@ -244,6 +314,7 @@ These three outputs use the same E03 Landscape source and the same Wide Horizon 
 
 The current compositor does not expose these values as a numeric command-line argument; the report records them as applied orchestration decisions rather than machine-enforced scores.
 
+<a id="series-showcase"></a>
 ## 🗂️ V3 Series Showcase
 
 These three actual outputs were reviewed as a Codex-side series-style evaluation: same warm-ivory panel language, Bodoni typography family, whole-run kerning, restrained whitespace, and source-traceable mark vocabulary, while each image keeps its own scene logic.
@@ -256,7 +327,11 @@ These three actual outputs were reviewed as a Codex-side series-style evaluation
 
 This is a real visual PASS review of the documented Series Style Lock contract on Codex outputs. The current runtime does not expose a separate machine flag named Series Style Lock; the series showcase itself remains Codex-side, while the independent DeepSeek validation covers the deterministic capability path described below.
 
+<a id="how-it-works"></a>
 ## ⚙️ How It Works
+
+<details>
+<summary>Open the workflow sequence</summary>
 
 ### Original Edition
 
@@ -270,6 +345,9 @@ Photograph → Scene Analysis → Creative Controls → Layout Selection → Art
 
 Transparent motif → portable chroma cleanup → deterministic composer → exact local typography → manifest → machine validator.
 
+</details>
+
+<a id="validation"></a>
 ## ✅ Validation
 
 The numbers below are from the current public source and the v3.0.0 release, not historical estimates.
@@ -286,6 +364,7 @@ The numbers below are from the current public source and the v3.0.0 release, not
 
 Built to be checked, not just generated.
 
+<a id="independent-validation"></a>
 ## 🔬 Independent Validation
 
 An independent DeepSeek Harness run completed the deterministic capability path.
@@ -301,6 +380,7 @@ An independent DeepSeek Harness run completed the deterministic capability path.
 
 See the concise [DeepSeek Harness validation summary](docs/evals/deepseek-harness-validation.md). DeepSeek Harness did not expose native neural image generation during this validation, so motif synthesis used deterministic procedural Pillow generation. This limitation did not change the verified photo-region pixel exactness, source hash, geometry, typography, deterministic composition, or machine-validation results.
 
+<a id="compatibility"></a>
 ## 🌐 Compatibility
 
 ### Original Edition
@@ -315,6 +395,7 @@ See the concise [DeepSeek Harness validation summary](docs/evals/deepseek-harnes
 
 DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 
+<a id="releases"></a>
 ## 📥 Releases
 
 ### Photo Abstract Editorial — Original Edition
@@ -336,6 +417,7 @@ DESIGNED FOR COMPATIBILITY is not the same as VALIDATED.
 
 v3.0.0 is the current formal stable release.
 
+<a id="switching"></a>
 ## 🔄 Switching / Upgrade Guide
 
 Stay on Original if you prefer the fixed historical visual behavior, use Codex, and want a smaller workflow.
@@ -344,6 +426,7 @@ Try V3 if you need scene adaptation, four creative controls, automatic layouts, 
 
 No Original user is required to migrate. The two packages can remain available side by side.
 
+<a id="faq"></a>
 ## ❓ FAQ
 
 ### Can Original run outside Codex?
@@ -374,6 +457,7 @@ Not in this repository's published evidence. DeepSeek Harness is independently v
 
 It preserves a visual family such as panel language, palette, typography, whitespace, and mark vocabulary while re-analyzing each source instead of copying coordinates or motifs.
 
+<a id="technical-details"></a>
 ## 🛠️ Technical Details
 
 <details>
@@ -406,6 +490,7 @@ V3 manifests record source/output hashes, rendered photo-region hash, panel geom
 
 </details>
 
+<a id="project-status"></a>
 ## 📌 Project Status
 
 - Original Edition: supported, preserved, and available as the historical v1.0.0 release.
@@ -414,6 +499,7 @@ V3 manifests record source/output hashes, rendered photo-region hash, panel geom
 - Cross-agent compatibility: verified for the tested DeepSeek Harness capability path; other Agents remain untested.
 - Formal v3.0.0: current stable release.
 
+<a id="license"></a>
 ## ⚖️ License
 
 This project and its public releases are licensed under AGPL-3.0. See [LICENSE](LICENSE).
