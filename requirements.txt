@@ -1,0 +1,2 @@
+# Runtime dependencies for the local compositor and validator.
+Pillow==12.3.0

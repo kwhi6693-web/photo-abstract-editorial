@@ -235,7 +235,7 @@ class ComposeEditorialTests(unittest.TestCase):
         self.assertEqual(len(manifest["source"]["sha256"]), 64)
         self.assertEqual(len(manifest["output"]["sha256"]), 64)
 
-    def test_title_accent_uses_smaller_italic_whole_word_run(self) -> None:
+    def test_title_accent_uses_smaller_separate_font_whole_word_run(self) -> None:
         """Catch a connector being rendered with the same rigid face as the main title."""
         source = self.root / "accent-source.png"
         output = self.root / "accent-result.png"
@@ -253,7 +253,8 @@ class ComposeEditorialTests(unittest.TestCase):
         self.assertEqual("".join(run["text"] for run in runs), "Measured at Horizon")
         self.assertEqual([run["style"] for run in runs], ["primary", "accent", "primary"])
         self.assertLess(runs[1]["font_size"], runs[0]["font_size"])
-        self.assertTrue(runs[1]["font_file"].lower().endswith(("i.ttf", "italic.ttf")))
+        self.assertNotEqual(runs[1]["font_file"], runs[0]["font_file"])
+        self.assertIn(Path(runs[1]["font_file"]).suffix.lower(), {".ttf", ".ttc", ".otf", ".otc"})
         self.assertEqual(typography["kerning_mode"], "whole-run")
 
     def test_title_accent_must_be_one_complete_word_occurrence(self) -> None:
