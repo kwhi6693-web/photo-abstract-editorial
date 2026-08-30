@@ -231,6 +231,24 @@ Native Image Edit 與 Reference Generation 不得被描述為機器驗證的 Str
 
 </details>
 
+### 開發測試
+
+測試執行器僅作為開發依賴，不會進入任何執行階段發布包。從全新檢出開始，建立隔離環境、安裝儲存庫開發依賴，然後直接執行 `pytest`：
+
+~~~powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+pytest
+~~~
+
+~~~bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+pytest
+~~~
+
 <a id="installation"></a>
 ## 📦 安裝方法
 

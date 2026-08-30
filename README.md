@@ -231,6 +231,24 @@ Visual understanding, image generation, and reference-image support. Results are
 
 </details>
 
+### Development Tests
+
+The test runner is a development dependency and is not included in either runtime release archive. From a fresh checkout, create an isolated environment, install the repository development dependencies, and run `pytest` directly:
+
+~~~powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+pytest
+~~~
+
+~~~bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+pytest
+~~~
+
 <a id="installation"></a>
 ## 📦 Installation
 
