@@ -20,7 +20,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install the pinned scanner (not the scanned project)
-        run: python -I -m pip install "agent-xplat @ git+https://github.com/kwhi6693-web/agent-xplat.git@fa8021af63e9743c4207a03443021d943301bd52"
+        run: python -I -m pip install "agent-xplat==1.0.3"
 
       - name: Check out target repository into an isolated directory
         uses: actions/checkout@v7
