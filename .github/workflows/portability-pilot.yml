@@ -1,0 +1,128 @@
+name: Agent-xplat portability reports (trial)
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portability-report:
+    name: agent-xplat static portability report
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install the pinned scanner (not the scanned project)
+        run: python -I -m pip install "agent-xplat==1.0.2"
+
+      - name: Check out target repository into an isolated directory
+        uses: actions/checkout@v7
+        with:
+          path: target
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Scan in report mode and preserve the scanner outcome
+        id: scan
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -u
+          mkdir -p reports
+          args=(target)
+          if [[ -n "${BASE_SHA}" ]]; then
+            args+=(--diff "${BASE_SHA}")
+          fi
+          status=0
+          for format in json markdown sarif; do
+            code=0
+            python -I -m agent_xplat scan "${args[@]}" --format "$format" --output "reports/scan.$format" || code=$?
+            if (( code > status )); then status=$code; fi
+          done
+          python - <<'PY' || status=2
+          import json
+          import pathlib
+          for name in ("scan.json", "scan.sarif"):
+              path = pathlib.Path("reports") / name
+              if not path.exists():
+                  print(f"error: expected report was not produced: {path}")
+                  raise SystemExit(2)
+              try:
+                  json.loads(path.read_text(encoding="utf-8"))
+              except Exception as exc:
+                  print(f"error: report is not parseable JSON: {path}: {exc}")
+                  raise SystemExit(2)
+          if not pathlib.Path("reports", "scan.markdown").exists():
+              print("error: expected report was not produced: reports/scan.markdown")
+              raise SystemExit(2)
+          PY
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Publish a readable summary
+        if: always()
+        shell: bash
+        run: |
+          python - <<'PY' >>"$GITHUB_STEP_SUMMARY"
+          import json
+          import pathlib
+
+          path = pathlib.Path("reports", "scan.json")
+          try:
+              data = json.loads(path.read_text(encoding="utf-8"))
+          except Exception as exc:
+              print(f"## agent-xplat portability report (trial)\n\nNo parseable `reports/scan.json` was produced ({exc}). See the scan step logs; any generated reports are preserved as artifacts.")
+              raise SystemExit(0)
+
+          summary = data.get("summary", {})
+          identity = summary.get("source_identity", {})
+          groups = {}
+          for finding in data.get("findings", []):
+              groups.setdefault(finding.get("severity"), []).append(finding)
+
+          print(f"## agent-xplat portability report (trial, static inference)")
+          print()
+          print(f"- Scanner `{data.get('tool_version')}` pinned as `agent-xplat==1.0.2`; schema `{data.get('schema_version')}`; scanned commit `{identity.get('git_commit', 'unknown')[:12]}`")
+          print(f"- Files scanned: **{summary.get('files_scanned')}**; active findings: **{summary.get('findings')}**")
+          print(f"- Blocker {summary.get('blockers')} / Error {summary.get('errors')} / Warning {summary.get('warnings')} / Info {summary.get('infos')}")
+          print()
+          print("This trial is **report mode**: findings do not block the check. Complete JSON/SARIF/Markdown reports are uploaded as artifacts; this summary is truncated.")
+          for severity in ("BLOCKER", "ERROR", "WARNING", "INFO"):
+              group = groups.get(severity)
+              if not group:
+                  continue
+              shown = group[:3]
+              print(f"\n**{severity} ({len(group)})** — first {len(shown)} of {len(group)}:")
+              for finding in shown:
+                  location = finding.get("location", {})
+                  text = (finding.get("reason") or finding.get("description") or "").strip()
+                  if len(text) > 160:
+                      text = text[:157] + "..."
+                  print(f"- `{location.get('path')}:{location.get('line')}` — {finding.get('rule_id')} ({finding.get('severity')}): {text}")
+          PY
+
+      - name: Upload complete reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-xplat-portability-reports
+          path: reports/
+          if-no-files-found: error
+
+      - name: Enforce the report-mode gate
+        if: always()
+        env:
+          SCAN_EXIT: ${{ steps.scan.outputs.exit_code }}
+        run: |
+          case "$SCAN_EXIT" in
+            0|1) echo "Scanner completed (exit $SCAN_EXIT); report-mode trial passes." ;;
+            2|3) echo "Scanner failed with exit $SCAN_EXIT (2 = parameter/config/file error, 3 = internal error); the trial is marked failed."; exit "$SCAN_EXIT" ;;
+            *) echo "Scanner did not record a completed exit code."; exit 3 ;;
+          esac
