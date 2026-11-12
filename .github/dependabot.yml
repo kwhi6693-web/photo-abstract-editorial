@@ -5,6 +5,11 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    ignore:
+      # Pillow 13 requires Python >= 3.11; this project still supports and tests Python 3.10.
+      # Remove this entry when Python 3.10 support is dropped.
+      - dependency-name: "pillow"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
